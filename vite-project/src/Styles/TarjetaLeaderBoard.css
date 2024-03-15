@@ -1,0 +1,10 @@
+.tarjetaleaderboard{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+.foto-nombre{
+    display: flex;
+    width: 25%;
+    justify-content: space-between;
+}

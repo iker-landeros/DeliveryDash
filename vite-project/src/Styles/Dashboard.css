@@ -1,0 +1,93 @@
+.fondo-dashboard{
+    width: 100%;
+    height: 130vh;
+    display: flex;
+    flex-wrap: wrap;
+}
+.dashboard-titulo{
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+}
+.container-dashboard{
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+    background: linear-gradient(#0053B1, #52BEDA);
+}
+.container-fecha{
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: flex-end;
+}
+.container-fecha-dentro{
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+    align-items: center;
+}
+.div-tarjetas{
+    justify-content: space-between;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+.div-grafica-containers{
+    display: flex;
+    margin-top: 40px;
+    justify-content: space-between;
+}
+.div-grafica{
+    flex: 5;
+    background-color: white;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.div-grafica-titulo{
+    padding: 10px;
+}
+.div-leaderboard{
+    flex: 3;
+    background-color: white;
+    margin-left: 10%;
+    border-radius: 10px;
+}
+.leaderboard-titulo{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px
+}
+.leaderboard-centrar{
+    padding: 10px;
+    font-weight: bold;
+}
+.boton-descarga{
+    background-color: #E0F0FF;
+    border-radius: 10px;
+    color: #0053B1;
+    font-weight: bold;
+    border: none;
+    flex: 1;
+    height: 60%;
+
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.boton-fecha{
+    background-color: #E0F0FF;
+    border-radius: 10px;
+    color: black;
+    font-weight: bold;
+    border: none;
+    flex: 1;
+    height: 60%;
+    margin-right: 20px;
+
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}

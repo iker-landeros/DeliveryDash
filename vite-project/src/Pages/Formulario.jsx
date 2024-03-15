@@ -1,45 +1,38 @@
-import { useState } from 'react'
-import '../App.css'
+import { useState,useRef } from 'react'
+import '../Styles/Formulario.css'
 const  Formulario =() => {
-  const Login = () => {
-    console.log(nombre)
-    console.log(contraseña)
-  }
+  const loginForm = useRef(null)
+  const Login = async (evt) => {
+    evt.preventDefault() //previene el evento de la funcion submit
+    const form = new FormData(loginForm.current)
+    const reponse = await fetch('http://localhost:3000/login',{
+        method: "POST",
+        body: form
+        })
+    const data = await reponse.json()
+    if(data.token){
+        //Inicia Sesion
+        console.log("Hola usuario")
+        localStorage.setItem('token',data.token)
+    }else{
+        alert('Usuario o contraseña incorrectos')
+    }
 
-  const [nombre, setNombre] = useState('');
-  const [contraseña, setContraseña] = useState('');
-
-  const handleNombreChange = (event) => {
-    setNombre(event.target.value);
-  };
-
-  const handleContraseñaChange = (event) => {
-    setContraseña(event.target.value);
-  };
+}
 
   return (
     <div className='fondo-formulario'>
       <div className='imagen-fondo'>
         <div className='container'>
-          <div className='formulario'>
+        <form className='formulario' onSubmit={Login} ref={loginForm}>
             <p>Nombre</p>
-            <input
-              type="text"
-              id="nombre"
-              value={nombre}
-              onChange={handleNombreChange}
-            />
+            <input type="text" name="username"></input>
             <p>Contraseña</p>
-            <input
-              type="password"
-              id="contraseña"
-              value={contraseña}
-              onChange={handleContraseñaChange}
-            ></input>
-            <div className='div-boton'>
-              <button onClick={Login}>Enviar</button>
-            </div>
-          </div>
+            <input type="password" name="password"></input>
+              <div className='div-boton'>
+                <button type='submit'>Enviar</button>
+              </div>
+          </form>
         </div>
       </div>
     </div>

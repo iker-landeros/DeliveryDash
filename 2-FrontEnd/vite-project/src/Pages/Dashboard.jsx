@@ -1,7 +1,7 @@
 import { useState,useRef } from 'react'
 import '../Styles/Dashboard.css'
 import TarjetaDashboard from '../Components/TarjetaDashboard'
-import MenuBotones from '../Components/MenuBotones'
+import Botones from '../Components/Botones'
 import TarjetaLeaderBoard from '../Components/TarjetaLeaderBoard'
 const  Dashboard =() => {
 
@@ -16,7 +16,7 @@ const  Dashboard =() => {
         </div>
         <p className='dashboard-titulo'>Dashboard</p>
         <div>
-          <MenuBotones/>
+          <Botones/>
         </div>
       </div>
     </div>

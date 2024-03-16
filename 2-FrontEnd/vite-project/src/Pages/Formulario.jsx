@@ -1,6 +1,8 @@
 import { useState,useRef } from 'react'
 import '../Styles/Formulario.css'
+import { useNavigate } from 'react-router-dom'
 const  Formulario =() => {
+  const navigate = useNavigate();
   const loginForm = useRef(null)
   const Login = async (evt) => {
     evt.preventDefault() //previene el evento de la funcion submit
@@ -14,6 +16,7 @@ const  Formulario =() => {
         //Inicia Sesion
         console.log("Hola usuario")
         localStorage.setItem('token',data.token)
+        navigate("/Dashboard/general")
     }else{
         alert('Usuario o contraseña incorrectos')
     }

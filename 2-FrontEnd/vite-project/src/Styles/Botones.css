@@ -17,6 +17,11 @@
     border-radius: 10px;
     height: 30px;
     font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
 .boton-presionado{
     width: 50%;
@@ -27,4 +32,9 @@
     border-radius: 10px;
     height: 30px;
     font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }

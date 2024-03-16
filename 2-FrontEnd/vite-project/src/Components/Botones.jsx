@@ -1,11 +1,18 @@
+import { Link,Outlet } from "react-router-dom"
+import React, { useState } from 'react';
 import "../Styles/Botones.css"
 const  Botones =({opcion,setOpcion}) => {
-
+  const [botonPresionado, setBotonPresionado] = useState('general');
   return (
-    <div className="div-botones">
-            <button className={opcion===0 ? 'boton-presionado':'boton'} onClick={() =>{setOpcion(0)}}>General</button>
-            <button className={opcion===1 ? 'boton-presionado':'boton'} onClick={() =>{setOpcion(1)}}>Analítica</button>
-    </div>
+    <>
+    <nav className="div-botones">
+            <Link to='general' className={botonPresionado === 'general' ? 'boton-presionado' : 'boton'} onClick={() => setBotonPresionado('general')}>General</Link>
+            <Link to='analitica' className={botonPresionado === 'analitica' ? 'boton-presionado' : 'boton'} onClick={() => setBotonPresionado('analitica')}>Analítica</Link>
+    </nav>
+    <section>
+        <Outlet/>
+    </section> 
+    </>   
   )
 }
 

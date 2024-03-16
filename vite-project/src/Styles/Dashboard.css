@@ -70,11 +70,12 @@
     border: none;
     flex: 1;
     height: 60%;
-
+    font-size: 18px;
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .boton-fecha{
     background-color: #E0F0FF;
@@ -90,4 +91,5 @@
     text-align: center;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }

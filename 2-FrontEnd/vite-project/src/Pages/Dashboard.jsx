@@ -1,8 +1,6 @@
-import { useState,useRef } from 'react'
 import '../Styles/Dashboard.css'
-import TarjetaDashboard from '../Components/TarjetaDashboard'
 import Botones from '../Components/Botones'
-import TarjetaLeaderBoard from '../Components/TarjetaLeaderBoard'
+import fecha from "../assets/fecha.svg"
 const  Dashboard =() => {
 
   return (
@@ -10,7 +8,7 @@ const  Dashboard =() => {
       <div className='container-dashboard'>
         <div className='container-fecha'>
           <div className='container-fecha-dentro'>
-            <p className='boton-fecha'>Enero 20, 2023 - Febrero 20, 2023</p>
+            <button className='boton-fecha'><img src={fecha}></img>Enero 20, 2023 - Febrero 20, 2023</button>
             <button className='boton-descarga'>Descargar</button>
           </div>
         </div>

@@ -1,0 +1,14 @@
+.div-grafica-containersa{
+    display: flex;
+    margin-top: 40px;
+    justify-content: space-between;
+}
+.div-graficaana{
+    width: 45%;
+    background-color: white;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.div-grafica-tituloa{
+    padding: 10px;
+}

@@ -34,6 +34,15 @@ const getMostPlayedAll = (req, res) => {
     })
 }
 
+const getTotalUsers = (req, res) => {
+    const sql = `SELECT COUNT(userID) AS userCount FROM Usuario;`
+
+    pool.query(sql, (err, results, fields) => {
+        if (err) res.json(err)
+        res.json(results)
+    })
+}
+
 const insertUsuario = (req, res) => {
     const {mail, fName, lName} = req.body
     const sql = `INSERT INTO Usuario(mail, fName, lName)
@@ -46,4 +55,4 @@ const insertUsuario = (req, res) => {
 
 
 
-module.exports = { getUsuarios, getMostPlayedUsuario, getMostPlayedAll, insertUsuario }
+module.exports = { getUsuarios, getMostPlayedUsuario, getMostPlayedAll, getTotalUsers, insertUsuario }

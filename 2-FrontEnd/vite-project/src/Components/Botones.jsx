@@ -1,6 +1,6 @@
 import { Link,Outlet } from "react-router-dom"
 import React, { useState } from 'react';
-import "../Styles/Botones.css"
+import "../Styles/General.css"
 const  Botones =({opcion,setOpcion}) => {
   const [botonPresionado, setBotonPresionado] = useState('general');
   return (

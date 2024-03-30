@@ -16,7 +16,7 @@ const  Formulario =() => {
         //Inicia Sesion
         console.log("Hola usuario")
         localStorage.setItem('token',data.token)
-        navigate("/Dashboard/general")
+        
     }else{
         alert('Usuario o contraseña incorrectos')
     }

@@ -8,3 +8,8 @@
   font-family: crossten;
   src: url('../public/crossten_extralight.ttf');
 }
+@font-face {
+  font-family: crossten2;
+  src: url('../public/Crossten-ExtraBold.ttf');
+}
+

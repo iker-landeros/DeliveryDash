@@ -1,0 +1,99 @@
+.calendar{
+    padding: 20px;
+}
+.calendar ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    text-align: center;
+}
+.calendar li{
+    width: calc(100% / 7);
+    height: 30px;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.day-calendar{
+    background-color: white;
+    border: #D5D4DF 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.selected-day {
+    background-color: #4177B6; /* Cambia este color según tus preferencias */
+    color: white; /* Cambia este color según tus preferencias */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.antes-depues{
+    width: 100px;
+    height: 20px;
+}
+.texto-calendario{
+    font-weight: bold;
+    background-color: #E8F5FF;
+    border-radius: 20px;
+    width: 220px;
+    text-align: center;
+    font-size: 20px;
+}
+.has-cita .cita-distintivo {
+    background-color: #4177B6;
+}
+.agendar-cita-distintivo{
+    color: white;
+}
+.boton-prepo{
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+.container-fechas{
+    display: flex;
+    width: 100%;
+}
+.negritas{
+    font-weight: 900;
+}
+.relevance-circle{
+    width: 20px ;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #81C3EA;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+}
+.tooltipText{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    background-color: #81C3EA;
+    color: black;
+    white-space: nowrap;
+    width: 40px;
+    border-radius: 7px;
+    display: none; /* Cambiado de visibility: hidden */
+    font-size: 15px;
+}
+.tooltipText::before{
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    border: 7px solid;
+    border-color: #81C3EA #0000 #0000 #0000;
+}
+.relevance-circle:hover .tooltipText {
+    display: block; /* Cambiado de visibility: visible */
+    top: -180%;
+}

@@ -1,5 +1,6 @@
 import "../Styles/Analitica.css"
 import { LineChart } from '@mui/x-charts/LineChart';
+import Calendario from "./Calendario";
 const  General =() => {
 
   return (
@@ -18,7 +19,8 @@ const  General =() => {
           </div>
           <div className='div-graficaana'>
               <div className='div-grafica-tituloa'>
-                <p>Jugadores nuevos por mes</p>
+                <p>Distribución de usuarios conectados</p>
+                <Calendario/>
               </div>
           </div>
       </div>

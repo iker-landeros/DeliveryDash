@@ -1,4 +1,4 @@
-import "../Styles/Dashboard.css"
+import "../Styles/General.css"
 import { useState } from "react";
 import TarjetaDashboard from "./TarjetaDashboard";
 import TarjetaLeaderBoard from "./TarjetaLeaderBoard";
@@ -19,38 +19,38 @@ const  General =() => {
     ]
   return (
     <div>
-    <div className='div-tarjetas'>
-        {tarjetas.map(tarjeta => 
-                        <TarjetaDashboard key={tarjeta.id} id={tarjeta.id} titulo="Lorem ipsum" dato={tarjeta.dato} porcentaje={tarjeta.porcentaje}/>
-        )}
-    </div>
-    <div className='div-grafica-containers'>
-        <div className='div-grafica'>
-            <div className='div-grafica-titulo'>
-            <p>Jugadores nuevos por mes</p>
-            </div>
-            <div className="div-grafica-imagen">
-            <BarChart
-                xAxis={[{ scaleType: 'band', data: ['group A'] }]}
-                series={[{ data: [4] }, { data: [1] }, { data: [2] }]}
-                width={500}
-                height={300}
-                />
-            </div>
-        </div>
-        <div className='div-leaderboard'>
-            <div className='leaderboard-centrar'>
-                <p>Usuarios que mas jugaron</p>
-            </div>
-            <div className='leaderboard-titulo'>
-                <p className="dash-negritas">Username</p>
-                <p  className="dash-negritas">Horas</p>
-            </div>
-            {jugadores.map(jugador => 
-                        <TarjetaLeaderBoard id={jugador.id} usuario={jugador.usuario} horas={jugador.horas}/>
+        <div className='div-tarjetas'>
+            {tarjetas.map(tarjeta => 
+                            <TarjetaDashboard key={tarjeta.id} id={tarjeta.id} titulo="Lorem ipsum" dato={tarjeta.dato} porcentaje={tarjeta.porcentaje}/>
             )}
         </div>
-    </div>
+        <div className='div-grafica-containers'>
+            <div className='div-grafica'>
+                <div className='div-grafica-titulo'>
+                    <p>Jugadores nuevos por mes</p>
+                </div>
+                <div className="div-grafica-imagen">
+                    <BarChart
+                        xAxis={[{ scaleType: 'band', data: ['group A'] }]}
+                        series={[{ data: [4] }, { data: [1] }, { data: [2] }]}
+                        width={500}
+                        height={300}
+                        />
+                </div>
+            </div>
+            <div className='div-leaderboard'>
+                <div className='leaderboard-centrar'>
+                    <p>Usuarios que mas jugaron</p>
+                </div>
+                <div className='leaderboard-titulo'>
+                    <p className="dash-negritas">Username</p>
+                    <p  className="dash-negritas">Horas</p>
+                </div>
+                {jugadores.map(jugador => 
+                            <TarjetaLeaderBoard id={jugador.id} usuario={jugador.usuario} horas={jugador.horas}/>
+                )}
+            </div>
+        </div>
     </div>
   )
 }

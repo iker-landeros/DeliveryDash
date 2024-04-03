@@ -31,14 +31,13 @@
     cursor: pointer;
 }
 .antes-depues{
-    width: 100px;
+    width: 20px;
     height: 20px;
 }
 .texto-calendario{
     font-weight: bold;
     background-color: #E8F5FF;
     border-radius: 20px;
-    width: 220px;
     text-align: center;
     font-size: 20px;
 }
@@ -48,6 +47,11 @@
 .agendar-cita-distintivo{
     color: white;
 }
+.days{
+    justify-content: center;
+    align-items: center;
+    display: block;
+}
 .boton-prepo{
     background-color: white;
     border: none;
@@ -56,6 +60,8 @@
 .container-fechas{
     display: flex;
     width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 .negritas{
     font-weight: 900;
@@ -70,6 +76,17 @@
     justify-content: center;
     cursor: pointer;
     position: relative;
+}
+.low-relevance{
+    width: 20px ;
+    height: 20px;
+    border-radius: 50%;
+    background-color: blue;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;   
 }
 .tooltipText{
     position: absolute;

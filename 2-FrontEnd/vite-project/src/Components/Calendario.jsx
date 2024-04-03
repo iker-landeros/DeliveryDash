@@ -15,15 +15,11 @@ const  Calendario =() => {
           total: 20
         },
         {
-            id: 2,
+            id: 3,
             date: new Date("2024-04-25T06:00:00.000Z"),
-            total: 20
+            total: 2
           }
       ]);
-
-  const [selectedDate, setSelectedDate] = useState(null);
-
-
   const [date, setDate] = useState(new Date());
 
 
@@ -49,50 +45,46 @@ const  Calendario =() => {
     "Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"
   ];
 
-  const handleDateClick = (day) => {
-    setDate(day);
-  };
-
-  const isDateSelected = (day) => {
-    return selectedDate && selectedDate.getTime() === day.getTime();
-  };
 
   const renderDay = (day) => {
-
     const classNames = ['day-calendar'];
-  
-    if (isDateSelected(day)) {
-      classNames.push('selected-day');
-    }
-
-    if(usuarios.some(usuario => usuario.date.getTime() === day.getTime())) {
-        classNames.push('has-cita'); 
+    const getBackgroundColor = (total) => {
+      if (total > 20) {
+        return 'red';
+      } else if (total === 10) {
+        return 'green';
+      } else {
+        return 'default-color';
       }
-
+    };
+  
+    const usuario = usuarios.find(usuario => usuario.date.getTime() === day.getTime());
+    const backgroundColor = usuario ? getBackgroundColor(usuario.total) : 'default-color';
+  
     return (
-      <li key={day} className={classNames.join(' ')} onClick={() => handleDateClick(day)}>
-        <div width={"100%"} height={"100%"} spacing={"-25px"}>
-        {usuarios.some(usuario => usuario.date.getTime() === day.getTime()) ? (
-    <div>
-        <div className="relevance-circle">
-            <p className='tooltipText'>{usuarios.find(usuario => usuario.date.getTime() === day.getTime()).total}</p>
-        </div>
-    </div> 
-        ) : (
-        <p>{day.getDate()}</p>
-        )}
+      <li key={day} className={classNames.join('')}>
+        <div>
+          {usuario ? (
+            <div>
+              <div className={'relevance-circle'} style={{ backgroundColor }}>
+                <p className='tooltipText'>{usuario.total}</p>
+              </div>
+            </div>
+          ) : (
+            <p>{day.getDate()}</p>
+          )}
         </div>
       </li>
     );
   };
-
+  
   const renderCalendar = () => {
     const totalDays = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
     const monthStartsOn = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
 
     const days = [];
 
-    // Clear the array at the beginning
+   
     for (let i = monthStartsOn; i > 0; i--) {
         days.push(
           <li key={i}></li>
@@ -105,19 +97,21 @@ const  Calendario =() => {
     }
 
     return (
-      <div>
-        <div className='container-fechas'>
+      <div className='days'>
+        <div >
+          <div className='container-fechas'>
             <button className='boton-prepo' onClick={prevMonth}><img className='antes-depues' src={antes}></img></button>
                 <p className='texto-calendario'>{months[date.getMonth()]} {date.getFullYear()}</p>
             <button className='boton-prepo' onClick={nextMonth}><img className='antes-depues' src={despues}></img></button>
+          </div>
         </div>
         <ul>
           {weekDays.map(day => (
             <li className='negritas' key={day}>{day}</li>
           ))}
         </ul>
-        <ul className="days">
-          {days}
+        <ul>
+            {days}
         </ul>
       </div>
     );

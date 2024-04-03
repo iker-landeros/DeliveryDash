@@ -16,7 +16,7 @@ const  TarjetaDashboard =({id,titulo,dato,porcentaje,colorDeFondo}) => {
   };
   return (
     <div className='tarjeta-dashboard' style={{ backgroundColor: obtenerColorFondo(id)}}>
-        <div>
+        <div className='tarjeta-dashboard-inner'>
             <p>{titulo}</p>
             <p className='texto-negrita'>{dato}</p>
             <p>+{porcentaje}% más que el mes pasado</p>

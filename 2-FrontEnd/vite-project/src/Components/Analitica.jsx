@@ -9,18 +9,21 @@ const  General =() => {
           <div className='div-graficaana'>
               <div className='div-grafica-tituloa'>
                 <p>Jugadores nuevos por mes</p>
-              </div>
               <div className="div-grafica-imagen">
                 <LineChart
                     xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
                     series={[{ curve: "linear", data: [2, 5.5, 2, 8.5, 1.5, 5], color: '#2E77BB'  }]}
                 />
+              </div>
             </div>
           </div>
+          
           <div className='div-graficaana'>
               <div className='div-grafica-tituloa'>
                 <p>Distribución de usuarios conectados</p>
-                <Calendario/>
+                <div className="div-grafica-calor">
+                  <Calendario/>
+                </div>
               </div>
           </div>
       </div>

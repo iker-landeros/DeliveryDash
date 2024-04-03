@@ -27,65 +27,6 @@
     justify-content: space-between;
     align-items: center;
 }
-@media (max-width: 670px) {
-    .container-fecha-dentro {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-    }
-}
-.div-tarjetas{
-    justify-content: space-between;
-
-    display: flex;
-    flex-wrap: wrap;
-}
-.div-grafica-containers{
-    display: flex;
-    margin-top: 40px;
-    flex-wrap: wrap;
-}
-.div-grafica{
-    flex: 5;
-    background-color: white;
-    border-radius: 10px;
-    font-weight: bold;
-    flex-wrap: wrap;
-    display: flex;
-    min-width: 300px;
-}
-.div-grafica-titulo{
-    padding: 10px;
-    width: 100%;
-}
-.dash-negritas{
-    font-weight: bold;
-}
-.div-grafica-imagen{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 80%;
-    padding: 10px;
-}
-.div-leaderboard{
-    flex: 3;
-    background-color: white;
-    border-radius: 10px;
-    flex-wrap: wrap;
-    min-width: 300px;
-}
-.leaderboard-titulo{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px
-}
-.leaderboard-centrar{
-    padding: 10px;
-    font-weight: bold;
-}
 .boton-descarga{
     background-color: #E0F0FF;
     border-radius: 10px;
@@ -113,10 +54,17 @@
     height: 90%;
     margin-right: 20px;
 
-
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+@media (max-width: 680px) {
+    .container-fecha-dentro {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
 }

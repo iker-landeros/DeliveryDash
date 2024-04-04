@@ -11,6 +11,6 @@ router.get('/alumnos/most/time', middleware, getMostTime)
 
 router.post('/alumnos/total/stars', middleware, getTotalStarsAlumno)
 router.post('/alumnos/total/time', middleware, getTotalTimeAlumno)
-router.post('/alumnos', middleware, insertAlumno)
+router.post('/alumnos', insertAlumno)
 
 module.exports = router

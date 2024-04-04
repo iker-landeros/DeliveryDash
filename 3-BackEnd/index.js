@@ -10,7 +10,11 @@ const niveles = require('./routes/niveles')
 
 const port = process.env.PORT || 3000
 
-app.use(cors())
+app.use(
+    cors({
+        origin: '*',
+    })
+)
 app.use(multer().array())
 app.use(express.json())
 

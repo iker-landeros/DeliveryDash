@@ -8,7 +8,7 @@ const  General =() => {
       <div className='div-grafica-containersa'>
           <div className='div-graficaana'>
               <div className='div-grafica-tituloa'>
-                <p>Jugadores nuevos por mes</p>
+                <p>Horas totales por mes</p>
               <div className="div-grafica-imagen">
                 <LineChart
                     xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}

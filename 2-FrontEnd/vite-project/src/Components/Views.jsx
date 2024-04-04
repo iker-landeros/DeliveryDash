@@ -2,17 +2,20 @@ import Formulario from "../Pages/Formulario";
 import Dashboard from "../Pages/Dashboard";
 import Analitica from "../Components/Analitica"
 import General from "../Components/General";
-import { Route, Routes, Link } from "react-router-dom";
-function Views() {
+import { Route, Routes, Link, BrowserRouter } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
+const  Views = () => {
 
   return (
-    <Routes>
-      <Route path = "/" element={<Formulario />} />
-      <Route path = "Dashboard" element={<Dashboard />}>
-        <Route path = 'analitica' element={<Analitica/>} />
-        <Route path = 'general' element={<General/>} />
-      </Route>
-    </Routes>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Formulario />} />
+        <Route path="Dashboard" index element={<ProtectedRoute><Dashboard /></ProtectedRoute>}>
+          <Route path="analitica" element={<ProtectedRoute><Analitica /></ProtectedRoute>} />
+          <Route path="general" element={<ProtectedRoute><General /></ProtectedRoute>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

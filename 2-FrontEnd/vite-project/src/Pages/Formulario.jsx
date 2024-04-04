@@ -4,17 +4,17 @@ import { useNavigate } from 'react-router-dom'
 const  Formulario =() => {
   const navigate = useNavigate();
   const loginForm = useRef(null)
+
   const Login = async (evt) => {
     evt.preventDefault() //previene el evento de la funcion submit
     const form = new FormData(loginForm.current)
-    const reponse = await fetch('http://localhost:3000/login',{
+    const reponse = await fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/profesor/login',{
         method: "POST",
         body: form
         })
     const data = await reponse.json()
     if(data.token){
-        //Inicia Sesion
-        console.log("Hola usuario")
+        navigate('/Dashboard/general')
         localStorage.setItem('token',data.token)
         
     }else{
@@ -29,7 +29,7 @@ const  Formulario =() => {
         <div className='container'>
         <form className='formulario' onSubmit={Login} ref={loginForm}>
             <p>Nombre</p>
-            <input type="text" name="username"></input>
+            <input type="text" name="mail"></input>
             <p>Contraseña</p>
             <input type="password" name="password"></input>
               <div className='div-boton'>

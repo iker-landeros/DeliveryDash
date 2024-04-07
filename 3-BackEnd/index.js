@@ -5,9 +5,10 @@ const app = express()
 
 const alumnos = require('./routes/alumnos')
 const profesores = require('./routes/profesores')
-const sesiones = require('./routes/sesiones')
 const niveles = require('./routes/niveles')
-const alumnos_niveles = require('./routes/alumnos_niveles')
+const nivelescompletados = require('./routes/nivelescompletados')
+const cursos = require('./routes/cursos')
+const inscripciones = require('./routes/inscripciones')
 
 const port = process.env.PORT || 3000
 
@@ -21,9 +22,10 @@ app.use(express.json())
 
 app.use('/', alumnos)
 app.use('/', profesores)
-app.use('/', sesiones)
 app.use('/', niveles)
-app.use('/', alumnos_niveles)
+app.use('/', nivelescompletados)
+app.use('/', cursos)
+app.use('/', inscripciones)
 
 app.listen(port, () => {
     console.log(`Conectado desde el puerto ${port}`)

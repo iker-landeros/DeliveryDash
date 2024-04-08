@@ -9,6 +9,21 @@ const getCursos = (req, res) => {
     })
 }
 
+// Info de todos los cursos que tiene el profesor
+const getCursosByProfesor = (req, res) => {
+    const { profesorID } = req.body
+    const sql = `SELECT DISTINCT C.*
+                 FROM Cursos C
+                 JOIN Inscripciones I ON C.cursoID = I.cursoID
+                 JOIN Profesores P ON I.profesorID = P.profesorID
+                 WHERE P.profesorID = ?`
+
+    pool.query(sql, [profesorID], (err, results, fields) => {
+        if (err) res.json(err)
+        res.json(results)
+    })
+}
+
 // Agregar un curso
 const insertCurso = (req, res) => {
     const { dateInicio, dateFinal, nombre } = req.body
@@ -36,4 +51,4 @@ const deleteCurso = (req, res) => {
     })
 }
 
-module.exports = { getCursos, insertCurso, deleteCurso }
+module.exports = { getCursos, getCursosByProfesor, insertCurso, deleteCurso }

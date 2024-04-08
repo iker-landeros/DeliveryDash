@@ -10,6 +10,21 @@ const getAlumnosSubscribed = (req, res) => {
     })
 }
 
+// Info de los alumnos dependiendo del curso
+const getAlumnosFromCurso = (req, res) => {
+    const { cursoID } = req.body
+    const sql = `SELECT DISTINCT A.*
+                 FROM Alumnos A
+                 JOIN Inscripciones I ON A.alumnoID = I.alumnoID
+                 JOIN Cursos C ON I.cursoID = C.cursoID
+                 WHERE C.cursoID = ?`
+
+    pool.query(sql, [cursoID], (err, results, fields) => {
+        if (err) res.json(err)
+        res.json(results)
+    })
+}
+
 // Info de todos los alumnos
 const getAlumnos = (req, res) => {
     const sql = `SELECT * FROM Alumnos`
@@ -162,6 +177,7 @@ const insertAlumno = (req, res) => {
 
 module.exports = { getAlumnosSubscribed,
                    getAlumnos,
+                   getAlumnosFromCurso,
                    getMostStarsSubscribed,
                    getMostStarsAll,
                    getMostTimeSubscribed,

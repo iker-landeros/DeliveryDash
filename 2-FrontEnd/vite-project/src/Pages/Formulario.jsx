@@ -1,7 +1,7 @@
-import { useRef } from 'react'
 import '../Styles/Formulario.css'
 import { useNavigate } from 'react-router-dom'
-
+import { useRef } from 'react'
+import icono from "../assets/icono.png"
 const  Formulario =() => {
   const navigate = useNavigate();
   const loginForm = useRef(null)
@@ -28,15 +28,22 @@ const  Formulario =() => {
     <div className='fondo-formulario'>
       <div className='imagen-fondo'>
         <div className='container'>
-        <form className='formulario' onSubmit={Login} ref={loginForm}>
-            <p>Nombre</p>
-            <input type="text" name="mail"></input>
-            <p>Contraseña</p>
-            <input type="password" name="password"></input>
-              <div className='div-boton'>
-                <button type='submit'>Enviar</button>
+          <div className='container-in'>
+            <div className='div-imagen-f'>
+              <img src={icono}></img>
+            </div>
+            <form className='formulario' onSubmit={Login} ref={loginForm}>
+              <div>
+              <p>Nombre</p>
+              <input type="text" name="mail"></input>
+              <p>Contraseña</p>
+              <input type="password" name="password"></input>
+                <div className='div-boton'>
+                  <button type='submit'>Enviar</button>
+                </div>
               </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>

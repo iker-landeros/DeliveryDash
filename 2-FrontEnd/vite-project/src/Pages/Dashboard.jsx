@@ -19,7 +19,7 @@ const  Dashboard =() => {
           <div className='container-fecha-dentro'>
             <input className='boton-fecha' type='month' onChange={handleMonthChange}></input>
             <button className="boton-descarga"><PopUpDescargar/></button>
-        </div>
+          </div>
         </div>
         <p className='dashboard-titulo'>Dashboard</p>
         <div>

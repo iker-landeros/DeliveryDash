@@ -20,7 +20,25 @@
   justify-content: center;
   align-items: center ;
 }
+.container-in{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+
+  flex-wrap: wrap;
+  display: flex;
+}
 .formulario{
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+}
+.div-imagen-f{
+  flex: 1;
+  justify-content: center;
+  display: flex;
 }
 .formulario input{
   border-radius: 20px;
@@ -43,4 +61,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media (max-width: 700px) {
+  .div-imagen-f {
+    visibility: hidden;
+    height: 0px;
+    flex: 0;
+  }
 }

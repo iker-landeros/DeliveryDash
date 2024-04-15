@@ -1,6 +1,7 @@
 import "../Styles/Analitica.css"
 import { LineChart } from '@mui/x-charts/LineChart';
 import Calendario from "./Calendario";
+
 const  General =() => {
 
   return (

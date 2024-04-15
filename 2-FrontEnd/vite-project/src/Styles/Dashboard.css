@@ -1,9 +1,11 @@
 .fondo-dashboard{
     width: 100%;
+
     display: flex;
     flex-wrap: wrap;
 }
 .dashboard-titulo{
+    margin-top: 10px;
     font-size: 40px;
     color: white;
     font-weight: bold;
@@ -11,38 +13,46 @@
 .container-dashboard{
     width: 100%;
     height: 100%;
+
     padding: 5%;
     background: linear-gradient(#0053B1, #52BEDA);
 }
 .container-fecha{
     width: 100%;
     height: 4%;
+    margin-top: -20px;
+    
     flex-wrap: wrap;
     display: flex;
     justify-content: flex-end;
 }
 .container-fecha-dentro{
-    display: flex;
     width: 30%;
+
+    display: flex;
     justify-content: space-between;
     align-items: center;
 }
 .boton-descarga{
+    height: 90%;
     background-color: #E0F0FF;
     border-radius: 10px;
     color: #0053B1;
     font-weight: bold;
     border: none;
-    flex: 1;
-    height: 90%;
+    text-decoration: none;
     font-size: 18px;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-
+    
+    flex: 1;
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+.csv-link{
+    text-decoration: none;
 }
 .boton-fecha{
     background-color: #E0F0FF;
@@ -51,8 +61,9 @@
     font-weight: bold;
     border: none;
     flex: 2;
-    height: 90%;
+    height: 100%;
     margin-right: 20px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 
     display: flex;
     text-align: center;
@@ -60,10 +71,12 @@
     align-items: center;
     cursor: pointer;
 }
-@media (max-width: 680px) {
+
+@media (max-width: 756px) {
     .container-fecha-dentro {
-        display: flex;
         width: 100%;
+
+        display: flex;
         justify-content: space-between;
         align-items: center;
     }

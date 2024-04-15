@@ -1,14 +1,15 @@
-import { useState,useRef } from 'react'
+import { useRef } from 'react'
 import '../Styles/Formulario.css'
 import { useNavigate } from 'react-router-dom'
+
 const  Formulario =() => {
   const navigate = useNavigate();
   const loginForm = useRef(null)
 
   const Login = async (evt) => {
-    evt.preventDefault() //previene el evento de la funcion submit
+    evt.preventDefault()
     const form = new FormData(loginForm.current)
-    const reponse = await fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/profesor/login',{
+    const reponse = await fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/profesores/login',{
         method: "POST",
         body: form
         })
@@ -21,7 +22,7 @@ const  Formulario =() => {
         alert('Usuario o contraseña incorrectos')
     }
 
-}
+  }
 
   return (
     <div className='fondo-formulario'>

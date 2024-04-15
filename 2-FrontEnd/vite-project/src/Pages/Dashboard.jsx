@@ -1,16 +1,25 @@
 import '../Styles/Dashboard.css'
 import Botones from '../Components/Botones'
-import fecha from "../assets/fecha.svg"
+import PopUpDescargar from '../Components/PopUpDescargar'
+import { CSVLink } from 'react-csv';
+
 const  Dashboard =() => {
+
+
+  const handleMonthChange = (e) =>{
+    console.log(e.target.value)
+  };
+  
+
 
   return (
     <div className='fondo-dashboard'>
       <div className='container-dashboard'>
         <div className='container-fecha'>
           <div className='container-fecha-dentro'>
-            <button className='boton-fecha'><img src={fecha}></img>Enero 20, 2023 - Febrero 20, 2023</button>
-            <button className='boton-descarga'>Descargar</button>
-          </div>
+            <input className='boton-fecha' type='month' onChange={handleMonthChange}></input>
+            <button className="boton-descarga"><PopUpDescargar/></button>
+        </div>
         </div>
         <p className='dashboard-titulo'>Dashboard</p>
         <div>

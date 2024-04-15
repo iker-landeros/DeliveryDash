@@ -1,0 +1,38 @@
+.container-botones{
+    width: 100%;
+    justify-content: space-between;
+}
+.botones-nav{
+    width: 30%;
+    background-color: aqua;
+}
+.tabladato{
+    width: 25%;
+}
+.tabla{
+    width: 100%;
+    display: block;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    font-weight: bold;
+}
+.tablain{
+    width: 100%;
+    display: flex;
+}
+
+.barrain{
+    display: flex;
+    width: 100%;
+    padding: 12px;
+    justify-content: space-between;
+}
+.barrain-boton2{
+    width: 20%;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+}

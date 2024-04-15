@@ -1,7 +1,8 @@
-import React, { useState  } from 'react';
 import "../Styles/Calendario.css"
+import React, { useState  } from 'react';
 import antes from "../assets/antes.svg"
 import despues from "../assets/despues.svg"
+
 const  Calendario =() => {
     const [usuarios, setUsuarios] = useState([
         {
@@ -15,10 +16,30 @@ const  Calendario =() => {
           total: 20
         },
         {
-            id: 3,
-            date: new Date("2024-04-25T06:00:00.000Z"),
-            total: 2
-          }
+          id: 3,
+          date: new Date("2024-04-26T06:00:00.000Z"),
+          total: 76
+        },
+        {
+          id: 4,
+          date: new Date("2024-04-01T06:00:00.000Z"),
+          total: 23
+        },
+        {
+          id: 5,
+          date: new Date("2024-04-13T06:00:00.000Z"),
+          total: 43
+        },
+        {
+          id: 6,
+          date: new Date("2024-04-12T06:00:00.000Z"),
+          total: 23
+        },
+        {
+          id: 7,
+          date: new Date("2024-04-20T06:00:00.000Z"),
+          total: 87
+        }
       ]);
   const [date, setDate] = useState(new Date());
 
@@ -47,21 +68,25 @@ const  Calendario =() => {
 
 
   const renderDay = (day) => {
-    const classNames = ['day-calendar'];
-    const getBackgroundColor = (total) => {
-      if (total > 20) {
-        return 'red';
-      } else if (total === 10) {
-        return 'green';
-      } else {
-        return 'default-color';
-      }
-    };
+  const classNames = ['day-calendar'];
+  const getBackgroundColor = (total) => {
+    if(total > 0 && total <= 20) {
+      return '#81C3EA';
+    } else if (total > 20 && total <= 40) {
+      return '#5A92B5';
+    } else if (total > 40 && total <= 60) {
+      return '#337F9E';
+    } else if (total > 60 && total <= 80) {
+      return '#106D87';
+    } else if (total > 80) {
+      return '#00546E';
+    }
+  };
   
-    const usuario = usuarios.find(usuario => usuario.date.getTime() === day.getTime());
-    const backgroundColor = usuario ? getBackgroundColor(usuario.total) : 'default-color';
-  
-    return (
+  const usuario = usuarios.find(usuario => usuario.date.getTime() === day.getTime());
+  const backgroundColor = usuario ? getBackgroundColor(usuario.total) : 'default-color';
+
+  return (
       <li key={day} className={classNames.join('')}>
         <div>
           {usuario ? (
@@ -77,14 +102,14 @@ const  Calendario =() => {
       </li>
     );
   };
-  
+
   const renderCalendar = () => {
     const totalDays = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
     const monthStartsOn = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
 
     const days = [];
 
-   
+
     for (let i = monthStartsOn; i > 0; i--) {
         days.push(
           <li key={i}></li>

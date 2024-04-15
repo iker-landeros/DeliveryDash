@@ -1,55 +1,61 @@
 .div-tarjetas{
-    justify-content: space-between;
+    width: 100%;
 
+    justify-content: space-between;
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
 }
 .div-grafica-containers{
-    display: flex;
     margin-top: 40px;
-    flex-wrap: wrap;
     width: 100%;
+
+
     justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
 }
 .div-grafica{
     width: 55%;
+
     background-color: white;
     border-radius: 10px;
     font-weight: bold;
+
     flex-wrap: wrap;
     display: flex;
-    min-width: 300px;
 }
 .div-grafica-titulo{
-    padding: 10px;
     width: 100%;
+    padding: 10px;
 }
 .div-leaderboard{
     width: 40%;
+    
     background-color: white;
     border-radius: 10px;
+
     flex-wrap: wrap;
-    min-width: 300px;
 }
 .leaderboard-centrar{
     padding: 10px;
     font-weight: bold;
 }
 .leaderboard-titulo{
+    padding: 10px;
+
     display: flex;
     justify-content: space-between;
-    padding: 10px
 }
 .div-grafica-imagen{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     height: 80%;
     padding: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-@media (max-width: 680px) {
+@media (max-width: 756px) {
     .div-grafica {
         margin-bottom: 10px;
         width: 100%;

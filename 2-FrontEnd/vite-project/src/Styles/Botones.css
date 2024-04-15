@@ -1,16 +1,19 @@
 .div-controlador-botones{
-    display: flex;
     padding: 0;
+
+    display: flex;    
+    margin-top: -30px;
 }
 .div-botones{
-    width: 70%;
+    width: 100%;
     background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border-radius: 10px;
     margin-bottom: 20px;
     padding: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;    
 }
 .boton{
     width: 50%;
@@ -42,6 +45,7 @@
     align-items: center;
     text-decoration: none;
 }
+
 @media (max-width: 680px) {
     .div-botones{
         display: flex;

@@ -4,12 +4,14 @@
   box-sizing: border-box;
   font-family: crossten;
 }
+
 @font-face {
   font-family: crossten;
-  src: url('../public/crossten_extralight.ttf');
+  src: url('/crossten_extralight.ttf');
 }
+
 @font-face {
   font-family: crossten2;
-  src: url('../public/Crossten-ExtraBold.ttf');
+  src: url('/Crossten-ExtraBold.ttf');
 }
 

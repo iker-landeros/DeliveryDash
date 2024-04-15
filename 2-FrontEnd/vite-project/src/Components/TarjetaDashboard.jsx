@@ -1,4 +1,5 @@
 import '../Styles/TarjetaDashboard.css'
+
 const  TarjetaDashboard =({id,titulo,dato,porcentaje,colorDeFondo}) => {
   const obtenerColorFondo = (id) => {
     switch (id) {

@@ -1,5 +1,6 @@
 import '../Styles/TarjetaLeaderBoard.css'
 import Avatar from "../assets/Avatar.svg"
+
 const  TarjetaLeaderBoard =({usuario,horas}) => {
 
   return (

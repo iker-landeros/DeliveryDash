@@ -4,6 +4,7 @@ import Formulario from "./Pages/Formulario";
 import Dashboard from "./Pages/Dashboard";
 import Analitica from "./Components/Analitica";
 import General from "./Components/General";
+import Inscripciones from "./Components/Inscripciones";
 import ProtectedRoute from "./Components/ProtectedRoute";
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/Dashboard"element={<ProtectedRoute><Dashboard /></ProtectedRoute>}>
           <Route path="analitica" element={<ProtectedRoute><Analitica /></ProtectedRoute>} />
           <Route path="general" element={<ProtectedRoute><General /></ProtectedRoute>} />
+          <Route path="inscripciones" element={<ProtectedRoute><Inscripciones /></ProtectedRoute>} />
         </Route>
       </Routes>
     </BrowserRouter>

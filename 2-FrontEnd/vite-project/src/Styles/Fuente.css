@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: crossten;
   }
+  
   @font-face {
     font-family: crossten;
     src: url('../public/crossten_extralight.ttf');

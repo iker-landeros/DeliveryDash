@@ -14,14 +14,6 @@
     display: flex;
     min-width: 300px;
 }
-@media (max-width: 680px) {
-    .div-graficaana {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-    }
-}
 .div-grafica-tituloa{
     height: 80%;
     padding: 10px;
@@ -33,4 +25,14 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+}
+
+@media (max-width: 755px) {
+    .div-graficaana {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+    }
 }

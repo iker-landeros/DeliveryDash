@@ -35,14 +35,13 @@ const getNivelesCompletadosByAlumno = (req, res) => {
 }
 
 const insertNivelCompletado = (req, res) => {
-    const { nivelID, alumnoID, dateInicio, dateFinal, obtainedStars } = req.body
-    const sql = `INSERT NivelesCompletados(nivelID, alumnoID, dateInicio, dateFinal, obtainedStars)
-                 VALUES(?, ?, ?, ?, ?)`
+    const { nivelID, mail, dateInicio, dateFinal, obtainedStars } = req.body
+    const sql = `CALL insertNivelCompletado(?, ?, ?, ?, ?)`
 
     let result
-    pool.query(sql, [nivelID, alumnoID, dateInicio, dateFinal, obtainedStars], (err, results, fields) => {
+    pool.query(sql, [nivelID, mail, dateInicio, dateFinal, obtainedStars], (err, results, fields) => {
         if (err) res.json(err)
-        result = { status: 200, mensaje: 'Nivel completado insertado correctamente'}
+        result = { status: 200, mensaje: 'Nivel completado insertado correctamente' }
         res.json(result)
     })
 }

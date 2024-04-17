@@ -16,20 +16,13 @@ const insertProfesor = (req, res) => {
     const isValidEmail = emailRegex.test(mail)
 
     if (isValidEmail) {
-        const verification = `SELECT COUNT(*) AS cantidad FROM Profesores
-                              WHERE mail = ?`
-        pool.query(verification, [mail], (err, results, fields) => {
+        const sql = `CALL insertProfesor(?, ?, ?, ?)`
+        pool.query(sql, [mail, password, fName, lName], (err, results, fields) => {
             if (err) res.json(err)
-    
-            if (results[0].cantidad === 0) {
-                const sql = `INSERT INTO Profesores(mail, password, fName, lName)
-                             VALUES(?, SHA2(?, 224), ?, ?)`
-                pool.query(sql, [mail, password, fName, lName], (err, results, fields) => {
-                    if (err) res.json(err)
-                })
-                result = { status: 200, mensaje: 'Usuario registrado correctamente' }
+            if (results) {
+                result = { status: 404, mensaje: 'Ya existe un profesor registrado con ese email' }
             } else {
-                result = { status: 403, mensaje: 'Ya existe un usuario con ese mail registrado'}
+                result = { status: 200, mensaje: 'Profesor registrado correctamente' }
             }
             res.json(result)
         })

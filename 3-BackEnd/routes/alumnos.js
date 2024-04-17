@@ -4,6 +4,7 @@ const middleware = require('../middleware/jwt.middleware')
 const { getAlumnosSubscribed,
         getAlumnos,
         getAlumnosFromCurso,
+        getAlumnosByMail, 
         getMostStarsSubscribed,
         getMostStarsAll,
         getMostTimeSubscribed,
@@ -20,6 +21,7 @@ router.get('/alumnos/time', getMostTimeAll)
 router.get('/alumnos/subscribed/total', middleware, getTotalAlumnosSubscribed)
 router.get('/alumnos/total', getTotalAlumnosAll)
 
+router.post('/alumnos/byMail', getAlumnosByMail)
 router.post('/alumnos/byCurso', middleware, getAlumnosFromCurso)
 router.post('/alumnos/subscribed/stars', middleware, getMostStarsSubscribed)
 router.post('/alumnos/subscribed/time', middleware, getMostTimeSubscribed)

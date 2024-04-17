@@ -35,6 +35,16 @@ const getAlumnos = (req, res) => {
     })
 }
 
+const getAlumnosByMail = (req, res) => {
+    const { mail } = req.body
+    const sql = `SELECT * FROM Alumnos WHERE mail = ?`
+
+    pool.query(sql, [mail], (err, results, fields) => {
+        if (err) res.json(err)
+        res.json(results)
+    })
+}
+
 // Obtener leaderboard de alumnos inscritos a aulify ordenado por estrellas
 const getMostStarsSubscribed = (req, res) => {
     const { cursoID, anio, mes } = req.body
@@ -178,6 +188,7 @@ const insertAlumno = (req, res) => {
 module.exports = { getAlumnosSubscribed,
                    getAlumnos,
                    getAlumnosFromCurso,
+                   getAlumnosByMail,
                    getMostStarsSubscribed,
                    getMostStarsAll,
                    getMostTimeSubscribed,

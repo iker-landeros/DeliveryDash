@@ -102,6 +102,7 @@ const getUsuarioConectadosDia = (req, res) => {
     const sql = `SELECT DATE_FORMAT(dateInicio,'%Y-%m-%d') AS fecha,
                     COUNT(DISTINCT alumnoID) as usuarios
                 FROM NivelesCompletados
+                WHERE alumnoID>0
                 GROUP BY DAY(dateInicio)`
 
     pool.query(sql, (err, results, fields) => {

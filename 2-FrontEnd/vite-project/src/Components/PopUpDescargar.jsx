@@ -18,7 +18,6 @@ const  PopUpDescargar = () => {
         .then(data => data.json())
         .then((data) => {
           setAlumnos(data)
-          console.log(data)
         })
     }, [])
     
@@ -38,9 +37,6 @@ const  PopUpDescargar = () => {
         {"id":4, "usuario" : "usuario 4", "horas" : 50},
         {"id":5, "usuario" : "usuario 5", "horas" : 60}
     ]
-
-
-    console.log(currentDate)
 
     const [myVar, setMyVar] = useState(1);
     return (

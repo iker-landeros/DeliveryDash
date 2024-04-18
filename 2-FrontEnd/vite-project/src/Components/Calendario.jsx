@@ -1,9 +1,10 @@
 import "../Styles/Calendario.css"
-import React, { useState  } from 'react';
+import React, { useState,useEffect  } from 'react';
 import antes from "../assets/antes.svg"
 import despues from "../assets/despues.svg"
 
 const  Calendario =() => {
+  const [dias, setDias] = useState([]);
     const [usuarios, setUsuarios] = useState([
         {
           id: 1,
@@ -42,8 +43,20 @@ const  Calendario =() => {
         }
       ]);
   const [date, setDate] = useState(new Date());
-
-
+  useEffect(() => {
+    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/total/tiempo/dia', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+      },
+    })
+      .then(data => data.json())
+      .then((data) => {
+        setDias(data)
+        console.log(dias)
+      })
+  }, [])
   const months = [
     "Enero", "Febrero", "Marzo", 
     "Abril", "Mayo", "Junio",

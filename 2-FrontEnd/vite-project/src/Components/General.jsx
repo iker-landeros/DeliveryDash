@@ -9,6 +9,9 @@ const  General =() => {
   const [tt, setTt] = useState([]);
   const [sesiones, setSesiones] = useState([]);
   const [leaders, setLeaders] = useState([]);
+  const [et, setEt] = useState([]);
+  const [nc, setNc] = useState([]);
+  const [pn, setPn] = useState([]);
   const data = [
     {
       name: 'Nivel 1',
@@ -51,7 +54,6 @@ const  General =() => {
       .then(data => data.json())
       .then((data) => {
         setJt(data[0])
-        console.log(jt)
       })
   }, [])
 
@@ -66,10 +68,36 @@ const  General =() => {
       .then(data => data.json())
       .then((data) => {
         setTt(data[0])
-        console.log(tt)
       })
   }, [])
 
+  useEffect(() => {
+    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/stars', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+      },
+    })
+      .then(data => data.json())
+      .then((data) => {
+        setEt(data[0])
+      })
+  }, [])
+
+  useEffect(() => {
+    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/total', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+      },
+    })
+      .then(data => data.json())
+      .then((data) => {
+        setNc(data[0])
+      })
+  }, [])
 
   useEffect(() => {
     fetchData('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/subscribed/time', setSesiones);
@@ -78,13 +106,17 @@ const  General =() => {
   useEffect(() => {
     fetchData('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/time', setLeaders);
   }, []);
+
+  useEffect(() => {
+    fetchData('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/total/nivel', setPn);
+  }, []);
   return (
     <div>
         <div className='div-tarjetas'>
             <TarjetaDashboard id={1} titulo="Jugadores totales" dato={jt.alumnoCount}/>
             <TarjetaDashboard id={2} titulo="Minutos totales" dato={tt.alumnoCount}/>
-            <TarjetaDashboard id={3} titulo="Estrellas totales" dato={sesiones.mensaje}/>
-            <TarjetaDashboard id={4} titulo="Niveles Completados" dato={10}/>
+            <TarjetaDashboard id={3} titulo="Estrellas totales" dato={et.estrellasTotales}/>
+            <TarjetaDashboard id={4} titulo="Niveles Completados" dato={nc.NivelesCompletados}/>
         </div>
         <div className='div-grafica-containers'>
             <div className='div-grafica'>
@@ -96,7 +128,7 @@ const  General =() => {
                     <BarChart
                       width={500}
                       height={300}
-                      data={data}
+                      data={pn}
                       margin={{
                         top: 5,
                         right: 30,
@@ -105,11 +137,11 @@ const  General =() => {
                       }}
                     >
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
+                      <XAxis dataKey="nivel" />
                       <YAxis />
                       <Tooltip />
                       <Legend />
-                      <Bar dataKey="tiempo" fill="#0053B1" activeBar={<Rectangle fill="#52BEDA" stroke="#52BEDA" />} />
+                      <Bar dataKey="promedio" fill="#0053B1" activeBar={<Rectangle fill="#52BEDA" stroke="#52BEDA" />} />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>

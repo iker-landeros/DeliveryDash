@@ -118,7 +118,8 @@ const getMostTimeAll = (req, res) => {
                      SUM(TIMESTAMPDIFF(SECOND, NC.dateInicio, NC.dateFinal)) AS tiempoTotal
                  FROM Alumnos A
                  JOIN NivelesCompletados NC ON A.alumnoID = NC.alumnoID
-                 GROUP BY A.alumnoID, A.nickname`
+                 GROUP BY A.alumnoID, A.nickname
+                 ORDER BY SUM(TIMESTAMPDIFF(SECOND, NC.dateInicio, NC.dateFinal)) DESC`
 
     pool.query(sql, (err, results, fields) => {
         if (err) res.json(err)

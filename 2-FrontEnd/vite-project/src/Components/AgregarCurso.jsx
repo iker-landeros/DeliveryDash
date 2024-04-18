@@ -57,9 +57,9 @@ const  AgregarUsuario = () => {
         </div>
         ) : (
         <div>
-            <a href="#openModal" className="modalAgregar" onClick={handleOpenModal}>Agregar Curso</a>
+            <a href="#openModal2" className="modalAgregar" onClick={handleOpenModal}>Agregar Curso</a>
     
-            <div id="openModal" className="modalDialog">
+            <div id="openModal2" className="modalDialog">
                 <div>
                     <a href="#close" title="Close" className="close" onClick={handleCloseModal}>X</a>
                     <p>Curso agregado correctamente</p>

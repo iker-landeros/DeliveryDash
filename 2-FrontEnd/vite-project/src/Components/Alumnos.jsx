@@ -37,7 +37,6 @@ const  Alumnos =() => {
     <>
       <div className="barrain">
       <button className="barrain-boton2" onClick={handleOnAgregar}>Agregar alumno</button>
-      <button className="barrain-boton2" onClick={handleOnEliminar}>Eliminar</button>
     </div>
     <div className="tabla">
         <div className="tablain">
@@ -64,3 +63,4 @@ const  Alumnos =() => {
 }
 
 export default Alumnos;
+{/* <button className="barrain-boton2" onClick={handleOnEliminar}>Eliminar</button>*/}

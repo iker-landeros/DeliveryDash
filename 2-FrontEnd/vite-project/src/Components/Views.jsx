@@ -1,24 +1,24 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "../Styles/Fuente.css";
 import Formulario from "../Pages/Formulario";
 import Dashboard from "../Pages/Dashboard";
-import Analitica from "../Components/Analitica"
+import Analitica from "../Components/Analitica";
 import General from "../Components/General";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
-import ProtectedRoute from "./ProtectedRoute";
-
-const  Views = () => {
-
+import Inscripciones from "../Components/Inscripciones";
+import ProtectedRoute from "../Components/ProtectedRoute";
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Formulario />} />
-        <Route path="Dashboard" index element={<ProtectedRoute><Dashboard /></ProtectedRoute>}>
-          <Route path="analitica" element={<ProtectedRoute><Analitica /></ProtectedRoute>} />
+        <Route path="/" element={<Formulario />}></Route>
+        <Route path="/Dashboard"element={<ProtectedRoute><Dashboard /></ProtectedRoute>}>
+          <Route path="actividad" element={<ProtectedRoute><Analitica /></ProtectedRoute>} />
           <Route path="general" element={<ProtectedRoute><General /></ProtectedRoute>} />
-          <Route path="inscripciones" element={<ProtectedRoute><General /></ProtectedRoute>} />
+          <Route path="inscripciones" element={<ProtectedRoute><Inscripciones /></ProtectedRoute>} />
         </Route>
       </Routes>
     </BrowserRouter>
   )
 }
 
-export default Views;
+export default App;

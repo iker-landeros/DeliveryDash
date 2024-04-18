@@ -4,7 +4,6 @@
 }
 .botones-nav{
     width: 30%;
-    background-color: aqua;
 }
 .tabladato{
     width: 25%;
@@ -35,4 +34,7 @@
     text-decoration: none;
     cursor: pointer;
     border: none;
+}
+.barrain-boton2:hover{
+    background-color: #e0e0e0;
 }

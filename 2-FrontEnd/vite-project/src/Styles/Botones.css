@@ -30,9 +30,24 @@
     align-items: center;
     text-decoration: none;
 }
+.boton:hover{
+    width: 50%;
+    background-color: rgba(82, 190, 218, .1);
+    color: #0053B1;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    height: 30px;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
 .boton-presionado{
     width: 50%;
-    background-color: rgba(82, 190, 218, 0.4);
+    background-color: rgba(82, 190, 218, 0.3);
     color: #0053B1;
     border: none;
     cursor: pointer;
@@ -46,7 +61,7 @@
     text-decoration: none;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 1024px) {
     .div-botones{
         display: flex;
         width: 100%;

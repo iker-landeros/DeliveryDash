@@ -55,7 +55,10 @@
     justify-content: center;
     align-items: center;
 }
-@media (max-width: 756px) {
+.dash-negritas{
+    font-weight: bold;
+}
+@media (max-width: 1024px) {
     .div-grafica {
         margin-bottom: 10px;
         width: 100%;

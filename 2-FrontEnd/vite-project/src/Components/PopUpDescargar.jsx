@@ -1,7 +1,27 @@
 import "../Styles/PopUpDescagar.css"
-import { useRef,useState } from 'react'
+import { useRef,useState,useEffect } from 'react'
 import { CSVLink } from "react-csv";
 const  PopUpDescargar = () => {
+    const [currentDate] = useState(new Date());
+
+    const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
+  
+    const [alumnos,setAlumnos] = useState([]);
+    useEffect(() => {
+      fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos', {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+        },
+      })
+        .then(data => data.json())
+        .then((data) => {
+          setAlumnos(data)
+          console.log(data)
+        })
+    }, [])
+    
     const [modalVisible, setModalVisible] = useState(false);
 
     const handleOpenModal = () => {
@@ -20,26 +40,27 @@ const  PopUpDescargar = () => {
     ]
 
 
+    console.log(currentDate)
 
     const [myVar, setMyVar] = useState(1);
     return (
     <>
         {myVar === 1 ? (
         <div>
-            <a href="#openModal" className="modalAgregar" onClick={handleOpenModal}>Descagar</a>
+            <a href="#openModal2" className="modalAgregar" onClick={handleOpenModal}>Descagar</a>
     
-            <div id="openModal" className="modalDialog">
+            <div id="openModal2" className="modalDialog">
                 <div>
                     <a href="#close" title="Close" className="close" onClick={handleCloseModal}>X</a>
                     <div className="container-modal-div">
                         <p>Nombre del reporte:</p>
-                        <p className="texto-modal-sub">Lorem Ipsum</p>
-                        <p>Fecha</p>
-                        <p className="texto-modal-sub">dd/mm/yyyy</p>
-                        <p>Descripción</p>
-                        <p className="texto-modal-sub">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porttitor sagittis dui, ut placerat ex ullamcorper non. </p>
+                        <p className="texto-modal-sub">Datos de los jugadores</p>
+                        <p>Fecha:</p>
+                        <p className="texto-modal-sub">{formattedDate}</p>
+                        <p>Descripción:</p>
+                        <p className="texto-modal-sub">Este informe incluye datos sobre los jugadores, los niveles que completaron, el tiempo que les llevó y las estrellas que ganaron.</p>
                         <div className="div-boton-modal">
-                            <CSVLink data={jugadores} filename={"Reporte.csv"}><button className="boton-descargar">Descargar</button></CSVLink>
+                            <CSVLink data={alumnos} filename={"Reporte.csv"}><button className="boton-descargar">Descargar</button></CSVLink>
                         </div>
                     </div>
                 </div>
@@ -47,9 +68,9 @@ const  PopUpDescargar = () => {
         </div>
         ) : (
         <div>
-            <a href="#openModal" className="modalAgregar" onClick={handleOpenModal}>Agregar Curso</a>
+            <a href="#openModal2" className="modalAgregar" onClick={handleOpenModal}>Agregar Curso</a>
     
-            <div id="openModal" className="modalDialog">
+            <div id="openModal2" className="modalDialog">
                 <div>
                     <a href="#close" title="Close" className="close" onClick={handleCloseModal}>X</a>
                     <p>Curso agregado correctamente</p>

@@ -45,5 +45,68 @@ const insertNivelCompletado = (req, res) => {
         res.json(result)
     })
 }
+const getTotalStars = (req, res) => {
+    const sql = `SELECT sum(obtainedStars) AS estrellasTotales
+                FROM NivelesCompletados`
 
-module.exports = { getNivelesCompletados, getNivelesCompletadosByAlumno, insertNivelCompletado }
+    pool.query(sql, (err, results, fields) => {
+        if (err) res.json(err)
+        res.json(results)
+    })
+}
+
+const getHorasTotalPorMes = (req, res) => {
+    const sql = `SELECT SUM(TIMESTAMPDIFF(MINUTE, dateInicio, dateFinal)) AS minutos,
+                    MONTHNAME(dateInicio) as mes
+                FROM NivelesCompletados`
+
+    pool.query(sql, (err, results, fields) => {
+        if (err) res.json(err)
+        res.json(results)
+    })
+}
+
+const getTotalNivelesCompletados = (req, res) => {
+    const sql = `SELECT COUNT(*) as NivelesCompletados
+                FROM NivelesCompletados`
+
+    pool.query(sql, (err, results, fields) => {
+        if (err) res.json(err)
+        res.json(results)
+    })
+}
+
+const getPromedioTiempoNivel = (req, res) => {
+    const sql = `SELECT nivelID as nivel,
+                    ROUND(AVG((TIMESTAMPDIFF(MINUTE, dateInicio, dateFinal))),2) AS promedio
+                FROM NivelesCompletados
+                GROUP BY nivelID`
+
+    pool.query(sql, (err, results, fields) => {
+        if (err) res.json(err)
+        res.json(results)
+    })
+}
+
+const getTiempoTotal = (req, res) => {
+    const sql = `SELECT SUM((TIMESTAMPDIFF(MINUTE, dateInicio, dateFinal))) as minutos
+                FROM NivelesCompletados`
+
+    pool.query(sql, (err, results, fields) => {
+        if (err) res.json(err)
+        res.json(results)
+    })
+}
+
+const getUsuarioConectadosDia = (req, res) => {
+    const sql = `SELECT DATE_FORMAT(dateInicio,'%Y-%m-%d') AS fecha,
+                    COUNT(DISTINCT alumnoID) as usuarios
+                FROM NivelesCompletados
+                GROUP BY DAY(dateInicio)`
+
+    pool.query(sql, (err, results, fields) => {
+        if (err) res.json(err)
+        res.json(results)
+    })
+}
+module.exports = { getNivelesCompletados, getNivelesCompletadosByAlumno, insertNivelCompletado, getTotalStars, getHorasTotalPorMes, getTotalNivelesCompletados, getPromedioTiempoNivel, getTiempoTotal, getUsuarioConectadosDia }

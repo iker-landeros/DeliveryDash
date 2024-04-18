@@ -35,19 +35,17 @@ const  Cursos =() => {
   };
   const handleOnEliminar2 = async (evt) => {
     evt.preventDefault();
-
-    const data = {idsSeleccionados};
-
-    const reponse = await fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/cursos/delete',{
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
-        },
-        body: JSON.stringify(data),
-        })
-        const responseData = await response.json();
-        console.log(responseData);
+    const data = { idsSeleccionados };
+    const response = await fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/cursos/delete', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+      },
+      body: JSON.stringify(data),
+    });
+    const responseData = await response.json();
+    if (responseData) console.log(responseData);
   };
 
   return (

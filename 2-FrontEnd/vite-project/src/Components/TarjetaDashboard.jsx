@@ -1,6 +1,6 @@
 import '../Styles/TarjetaDashboard.css'
 
-const  TarjetaDashboard =({id,titulo,dato,porcentaje,colorDeFondo}) => {
+const  TarjetaDashboard =({id,titulo,dato}) => {
   const obtenerColorFondo = (id) => {
     switch (id) {
       case 1:
@@ -21,7 +21,6 @@ const  TarjetaDashboard =({id,titulo,dato,porcentaje,colorDeFondo}) => {
         <div className='tarjeta-dashboard-inner'>
             <p className='texto-titulo'>{titulo}</p>
             <p className='texto-negrita'>{dato}</p>
-            <p>+{porcentaje}% más que el mes pasado</p>
         </div>
     </div>
   )

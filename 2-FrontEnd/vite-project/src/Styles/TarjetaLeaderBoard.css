@@ -1,12 +1,13 @@
 .tarjetaleaderboard{
-    padding: 5px;
+    padding: 0px;
     
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 .foto-nombre{
-    width: 25%;
-
+    width: 100%;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
 }

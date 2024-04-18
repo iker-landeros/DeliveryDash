@@ -2,28 +2,44 @@ import "../Styles/General.css"
 import { useState,useEffect } from "react";
 import TarjetaDashboard from "./TarjetaDashboard";
 import TarjetaLeaderBoard from "./TarjetaLeaderBoard";
-import { BarChart } from '@mui/x-charts/BarChart';
+import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const  General =() => {
   const [jt, setJt] = useState([]);
   const [tt, setTt] = useState([]);
   const [sesiones, setSesiones] = useState([]);
-  const [leader, setLeader] = useState([]);
-
-  useEffect(() => {
-      fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/subscribed/total', {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
-        },
-      })
-        .then(data => data.json())
-        .then((data) => {
-          setJt(data[0])
-        })
-    }, [])
-
+  const [leaders, setLeaders] = useState([]);
+  const data = [
+    {
+      name: 'Nivel 1',
+      tiempo: 4000
+    },
+    {
+      name: 'Nivel 2',
+      tiempo: 3000
+    },
+    {
+      name: 'Nivel 3',
+      tiempo: 2000
+    },
+    {
+      name: 'Nivel 4',
+      tiempo: 2780
+    },
+  ];  
+  const fetchData = (url, setData) => {
+    fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+      },
+    })
+    .then(data => data.json())
+    .then((data) => {
+      setData(data);
+    })
+  };  
   useEffect(() => {
     fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/total', {
       method: "GET",
@@ -34,66 +50,68 @@ const  General =() => {
     })
       .then(data => data.json())
       .then((data) => {
+        setJt(data[0])
+        console.log(jt)
+      })
+  }, [])
+
+  useEffect(() => {
+    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/subscribed/total', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+      },
+    })
+      .then(data => data.json())
+      .then((data) => {
         setTt(data[0])
+        console.log(tt)
       })
   }, [])
 
-  useEffect(() => {
-    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/sesiones/time', {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
-      },
-    })
-      .then(data => data.json())
-      .then((data) => {
-        setSesiones(data)
-        console.log(data)
-      })
-  }, [])
 
   useEffect(() => {
-    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/subscribed/stars', {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
-      },
-    })
-      .then(data => data.json())
-      .then((data) => {
-        setLeader(data)
-        console.log(data)
-      })
-  }, [])
-  const jugadores = [
-      {"id":1, "usuario" : "usuario 1", "horas" : 20},
-      {"id":2, "usuario" : "usuario 2", "horas" : 30},
-      {"id":3, "usuario" : "usuario 3", "horas" : 40},
-      {"id":4, "usuario" : "usuario 4", "horas" : 50},
-      {"id":5, "usuario" : "usuario 5", "horas" : 60}
-  ]
+    fetchData('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/subscribed/time', setSesiones);
+  }, []);
+
+  useEffect(() => {
+    fetchData('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/time', setLeaders);
+  }, []);
   return (
     <div>
         <div className='div-tarjetas'>
-            <TarjetaDashboard id={1} titulo="Jugadores totales" dato={jt.alumnoCount} porcentaje={30}/>
-            <TarjetaDashboard id={2} titulo="Jugadores Inscritos" dato={tt.alumnoCount} porcentaje={30}/>
-            <TarjetaDashboard id={3} titulo="Sesiones totales" dato={sesiones.mensaje} porcentaje={30}/>
-            <TarjetaDashboard id={4} titulo="Lorem Ipsum" dato={10} porcentaje={30}/>
+            <TarjetaDashboard id={1} titulo="Jugadores totales" dato={jt.alumnoCount}/>
+            <TarjetaDashboard id={2} titulo="Minutos totales" dato={tt.alumnoCount}/>
+            <TarjetaDashboard id={3} titulo="Estrellas totales" dato={sesiones.mensaje}/>
+            <TarjetaDashboard id={4} titulo="Niveles Completados" dato={10}/>
         </div>
         <div className='div-grafica-containers'>
             <div className='div-grafica'>
                 <div className='div-grafica-titulo'>
-                    <p>Jugadores nuevos por mes</p>
+                    <p>Tiempo promedio por nivel</p>
                 </div>
                 <div className="div-grafica-imagen">
+                  <ResponsiveContainer width="100%" height={300}>
                     <BarChart
-                        xAxis={[{ scaleType: 'band', data: ['group A'] }]}
-                        series={[{ data: [4] }, { data: [1] }, { data: [2] }]}
-                        width={500}
-                        height={300}
-                        />
+                      width={500}
+                      height={300}
+                      data={data}
+                      margin={{
+                        top: 5,
+                        right: 30,
+                        left: 20,
+                        bottom: 5,
+                      }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="name" />
+                      <YAxis />
+                      <Tooltip />
+                      <Legend />
+                      <Bar dataKey="tiempo" fill="#0053B1" activeBar={<Rectangle fill="#52BEDA" stroke="#52BEDA" />} />
+                    </BarChart>
+                  </ResponsiveContainer>
                 </div>
             </div>
             <div className='div-leaderboard'>
@@ -105,8 +123,8 @@ const  General =() => {
                       <p className="dash-negritas">Username</p>
                       <p  className="dash-negritas">Horas</p>
                   </div>
-                  {sesiones.map(sesion => 
-                              <TarjetaLeaderBoard key={sesion.nickname} usuario={sesion.nickname} horas={sesion.totalTiempoSesion}/>
+                  {leaders.map(leader => 
+                              <TarjetaLeaderBoard key={leader.nickname} usuario={leader.nickname} horas={leader.tiempoTotal}/>
                   )}
                 </div>
             </div>

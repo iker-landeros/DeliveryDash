@@ -15,7 +15,7 @@ const  Botones =() => {
     <nav className="div-controlador-botones">
           <div className="div-botones">
             <Link to='general' className={botonPresionado === 'general' ? 'boton-presionado' : 'boton'} onClick={() => setBotonPresionado('general')}>General</Link>
-            <Link to='analitica' className={botonPresionado === 'analitica' ? 'boton-presionado' : 'boton'} onClick={() => setBotonPresionado('analitica')}>Analítica</Link>
+            <Link to='actividad' className={botonPresionado === 'actividad' ? 'boton-presionado' : 'boton'} onClick={() => setBotonPresionado('actividad')}>Actividad</Link>
             <Link to='inscripciones' className={botonPresionado === 'inscripciones' ? 'boton-presionado' : 'boton'} onClick={() => setBotonPresionado('inscripciones')}>Inscripciones</Link>
           </div>
     </nav>

@@ -1,6 +1,7 @@
 .fondo-dashboard{
     width: 100%;
-
+    min-height: 100vh;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
 }
@@ -51,6 +52,9 @@
     align-items: center;
     cursor: pointer;
 }
+.boton-descarga:hover{
+    background-color: rgb(138, 184, 231, 1);
+}
 .csv-link{
     text-decoration: none;
 }
@@ -72,7 +76,7 @@
     cursor: pointer;
 }
 
-@media (max-width: 756px) {
+@media (max-width: 1024px) {
     .container-fecha-dentro {
         width: 100%;
 

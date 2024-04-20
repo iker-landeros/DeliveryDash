@@ -76,7 +76,7 @@ const getMostStarsSubscribed = (req, res) => {
 const getMostStarsAll = (req, res) => {
     const sql = `SELECT
                      A.nickname,
-                     SUM(MaxStars.obtainedStars) AS total_stars
+                     SUM(MaxStars.obtainedStars) AS obtainedStars
                  FROM Alumnos A
                  JOIN (
                  SELECT 

@@ -38,17 +38,15 @@ const insertCurso = (req, res) => {
     })
 }
 
-// Borrar un curso por su nombre
-const deleteCurso = (req, res) => {
-    const { nombre } = req.body
-    const sql = `DELETE FROM Cursos WHERE nombre = ?`
+// Borrar varios cursos por su id
+const deleteCursos = (req, res) => {
+    const { ids } = req.body
+    const sql = `CALL deleteCursos(?)`
 
-    let result
-    pool.query(sql, [nombre], (err, results, fields) => {
+    pool.query(sql, [ids], (err, results, fields) => {
         if (err) res.json(err)
-        result = { status: 200, mensaje: `Curso "${nombre}" borrado correctamente` }
-        res.json(result)
+        res.json({ status: 200, mensaje: `Cursos ${ids} borrados correctamente` })
     })
 }
 
-module.exports = { getCursos, getCursosByProfesor, insertCurso, deleteCurso }
+module.exports = { getCursos, getCursosByProfesor, insertCurso, deleteCursos }

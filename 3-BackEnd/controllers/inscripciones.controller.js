@@ -21,4 +21,14 @@ const insertInscripcion = (req, res) => {
     })
 }
 
-module.exports = { getInscripciones, insertInscripcion }
+const deleteInscripciones = (req, res) => {
+    const { ids } = req.body
+    const sql = `CALL deleteInscripciones(?)`
+
+    pool.query(sql, [ids], (err, results, fields) => {
+        if (err) res.json(err)
+        res.json({ status: 200, mensaje: `Inscripciones ${ids} borrados correctamente` })
+    })
+}
+
+module.exports = { getInscripciones, insertInscripcion, deleteInscripciones }

@@ -50,7 +50,7 @@ const getMostStarsSubscribed = (req, res) => {
     const { cursoID } = req.body
     const sql = `SELECT
                      A.nickname,
-                     SUM(MaxStars.obtainedStars) AS total_stars
+                     SUM(MaxStars.obtainedStars) AS obtainedStars
                  FROM Alumnos A
                  JOIN (
                  SELECT 
@@ -64,7 +64,7 @@ const getMostStarsSubscribed = (req, res) => {
                  JOIN Inscripciones I ON MaxStars.alumnoID = I.alumnoID
                  WHERE I.cursoID = ?
                  GROUP BY A.alumnoID
-                 ORDER BY total_stars DESC`
+                 ORDER BY obtainedStars DESC`
 
     pool.query(sql, [cursoID], (err, results, fields) => {
         if (err) res.json(err)
@@ -88,7 +88,7 @@ const getMostStarsAll = (req, res) => {
                  GROUP BY alumnoID, nivelID
                  ) AS MaxStars ON A.alumnoID = MaxStars.alumnoID
                  GROUP BY A.alumnoID
-                 ORDER BY total_stars DESC`
+                 ORDER BY obtainedStars DESC`
 
     pool.query(sql, (err, results, fields) => {
         if (err) res.json(err)

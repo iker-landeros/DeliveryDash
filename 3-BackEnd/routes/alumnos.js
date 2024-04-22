@@ -14,7 +14,8 @@ const { getAlumnosSubscribed,
         getTotalStarsAlumno,
         insertAlumno, 
         deleteAlumnos,
-        getTotalAlumnosByGroup } = require('../controllers/alumnos.controller')
+        getTotalAlumnosByGroup,
+        getAlumnosByCourse } = require('../controllers/alumnos.controller')
 
 router.get('/alumnos/subscribed', middleware, getAlumnosSubscribed)
 router.get('/alumnos', getAlumnos)
@@ -31,5 +32,6 @@ router.post('/alumnos/total/curso', middleware, getTotalAlumnosByGroup)
 router.post('/alumnos/stars/byAlumno', getTotalStarsAlumno)
 router.post('/alumnos', insertAlumno)
 router.post('/alumnos/delete', middleware, deleteAlumnos)
+router.post('/alumnos/total/curso/info', middleware, getAlumnosByCourse)
 
 module.exports = router

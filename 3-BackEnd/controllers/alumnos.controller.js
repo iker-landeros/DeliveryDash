@@ -214,6 +214,31 @@ const getTotalAlumnosByGroup = (req, res) => {
     })
 }
 
+const getAlumnosByCourse = (req, res) => {
+    const { cursoID } = req.body
+    const sql = `SELECT c.nombre,
+                a.alumnoID, 
+                a.mail,
+                a.nickname,
+                a.subscribed,
+                nc.nivelID,
+                nc.obtainedStars,
+                nc.dateInicio,
+                nc.dateFinal
+            FROM Alumnos as a
+            INNER JOIN NivelesCompletados as nc
+            ON a.alumnoID = nc.alumnoID
+            INNER JOIN Inscripciones AS i
+            ON a.alumnoID = i.cursoID
+            INNER JOIN Cursos AS c
+            ON i.cursoID = c.cursoID
+            WHERE i.cursoID = ?`
+
+    pool.query(sql, [cursoID], (err, results, fields) => {
+        if (err) res.json(err)
+        res.json(results)
+    })
+}
 
 
 module.exports = { getAlumnosSubscribed,
@@ -229,4 +254,5 @@ module.exports = { getAlumnosSubscribed,
                    getTotalStarsAlumno,
                    insertAlumno,
                    deleteAlumnos,
-                   getTotalAlumnosByGroup }
+                   getTotalAlumnosByGroup,
+                   getAlumnosByCourse }

@@ -1,11 +1,14 @@
 import "../Styles/PopUpDescagar.css"
 import { useRef,useState,useEffect } from 'react'
-import { CSVLink } from "react-csv";
+import { CSVLink } from "react-csv"
+import { useParams } from "react-router-dom";
+;
 const  PopUpDescargar = () => {
+    const { id } = useParams();
+
     const [currentDate] = useState(new Date());
 
     const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
-  
     const [alumnos,setAlumnos] = useState([]);
     useEffect(() => {
       fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos', {
@@ -50,7 +53,7 @@ const  PopUpDescargar = () => {
                     <a href="#close" title="Close" className="close" onClick={handleCloseModal}>X</a>
                     <div className="container-modal-div">
                         <p>Nombre del reporte:</p>
-                        <p className="texto-modal-sub">Datos de los jugadores</p>
+                        <p className="texto-modal-sub">Datos de los jugadores del curso {id}</p>
                         <p>Fecha:</p>
                         <p className="texto-modal-sub">{formattedDate}</p>
                         <p>Descripción:</p>

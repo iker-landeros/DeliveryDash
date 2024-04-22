@@ -6,6 +6,8 @@ import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 import { useParams } from "react-router-dom";
 
 const  General =() => {
+  const { id } = useParams();
+
   const [jt, setJt] = useState([]);
   const [tt, setTt] = useState([]);
   const [et, setEt] = useState([]);
@@ -14,103 +16,42 @@ const  General =() => {
   const [pn, setPn] = useState([]); 
   const [leaders, setLeaders] = useState([]);
 
-  const { id } = useParams();
-
-  const fetchData = (url, setData) => {
-    fetch(url, {
-      method: "GET",
+  const fetchApi = async (url,data,setFunction,isArray) =>{
+    try {
+    const response = await fetch(url, {
+      method: 'POST',
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
       },
+      body: JSON.stringify({
+        cursoID: data 
+      }),
     })
-    .then(data => data.json())
-    .then((data) => {
-      setData(data);
-    })
-  };  
-  useEffect(() => {
-    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/total', {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
-      },
-    })
-      .then(data => data.json())
-      .then((data) => {
-        setJt(data[0])
-      })
-  }, [])
+    const result = await response.json();
+    setFunction(isArray ? result : result[0]);
+  } catch (err){
+    console.log('error', err);
+  }
+}
 
   useEffect(() => {
-    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/total/tiempo', {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
-      },
-    })
-      .then(data => data.json())
-      .then((data) => {
-        setTt(data[0])
-      })
-  }, [])
+    fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/total/curso',
+    id,setJt)
+    fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/total/nivel/curso',
+    id,setNc)
+    fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/total/tiempo/curso',
+    id,setTt)
 
-  useEffect(() => {
-    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/stars', {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
-      },
-    })
-      .then(data => data.json())
-      .then((data) => {
-        setEt(data[0])
-      })
-  }, [])
+    fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/subscribed/time',
+    id,setLeaders,true)
+    fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/promedio/nivel/curso',
+    id,setPn,true)
 
-  useEffect(() => {
-    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/total', {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
-      },
-    })
-      .then(data => data.json())
-      .then((data) => {
-        setNc(data[0])
-      })
-  }, [])
-
-  useEffect(() => {
-    fetchData('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/time', setLeaders);
-  }, []);
-
-  useEffect(() => {
-    fetchData('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/total/nivel', setPn);
-  }, []);
-
-
-  useEffect(() => {
-    const saveGames = () => {
-      fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/subscribed/time', {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
-        },
-        body: JSON.stringify({
-          cursoID: id 
-        }),
-      })
-        .then((res) => res.json())
-        .then((result) => setLeaders(result))
-        .catch((err) => console.log('error'))
-    }
-    saveGames()
+    {/*Arreglar
+      fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/stars/total/curso',
+    id,setEt)
+  */}
   },[id]);
   return (
     <div>

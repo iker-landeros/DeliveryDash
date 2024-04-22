@@ -24,7 +24,7 @@ router.get('/nivelescompletados/total/tiempo', getTiempoTotal)
 router.get('/nivelescompletados/total/tiempo/dia', getUsuarioConectadosDia)
 
 router.post('/nivelescompletados/byAlumno', getNivelesCompletadosByAlumno)
-router.post('/nivelescompletados/promedio/nivel/curso', getPromedioTiempoNivelByCourse)
+router.post('/nivelescompletados/stars/total/curso', getEstrellasTotalesByCourse)
 router.post('/nivelescompletados/promedio/nivel/curso', getPromedioTiempoNivelByCourse)
 router.post('/nivelescompletados/total/tiempo/curso', getMinutosTotalesByCourse)
 router.post('/nivelescompletados/total/nivel/curso', getTotalNivelesCompletadosByCourse)

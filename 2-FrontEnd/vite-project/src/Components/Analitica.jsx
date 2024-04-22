@@ -1,8 +1,10 @@
 import "../Styles/Analitica.css"
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import Calendario from "./Calendario";
+import { useState,useEffect } from "react";
 
-const  General =() => {
+const  Analitica =() => {
+
   const data = [
     { month: 'Enero', horas: 10 },
     { month: 'Febrero', horas: 15 },
@@ -17,6 +19,20 @@ const  General =() => {
     { month: 'Noviembre', horas: 25 },
     { month: 'Diciembre', horas: 30 },
   ];
+  const [nc,setNc] = useState([]);
+  useEffect(() => {
+    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/horas/mes', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+      },
+    })
+      .then(data => data.json())
+      .then((data) => {
+        setNc(data[0])
+      })
+  }, [])
   return (
     <div>
       <div className='div-grafica-containersa'>
@@ -55,4 +71,4 @@ const  General =() => {
   )
 }
 
-export default General;
+export default Analitica;

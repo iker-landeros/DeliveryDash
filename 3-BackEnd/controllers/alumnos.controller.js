@@ -105,7 +105,8 @@ const getMostTimeSubscribed = (req, res) => {
                  JOIN Inscripciones I ON A.alumnoID = I.alumnoID
                  JOIN NivelesCompletados NC ON A.alumnoID = NC.alumnoID
                  WHERE I.cursoID = ?
-                 GROUP BY A.alumnoID, A.nickname`
+                 GROUP BY A.alumnoID, A.nickname
+                 ORDER BY SUM(TIMESTAMPDIFF(SECOND, NC.dateInicio, NC.dateFinal)) DESC`
 
     pool.query(sql, [cursoID], (err, results, fields) => {
         if (err) res.json(err)
@@ -198,6 +199,23 @@ const deleteAlumnos = (req, res) => {
     })
 }
 
+const getTotalAlumnosByGroup = (req, res) => {
+    const { cursoID } = req.body
+    const sql = `SELECT COUNT(a.alumnoID)  as alumnoCount
+                    FROM Alumnos as a
+                    INNER JOIN Inscripciones as I
+                    ON a.alumnoID = I.alumnoID
+                    WHERE I.cursoID = ?
+                    GROUP BY cursoID`
+
+    pool.query(sql, [cursoID], (err, results, fields) => {
+        if (err) res.json(err)
+        res.json(results)
+    })
+}
+
+
+
 module.exports = { getAlumnosSubscribed,
                    getAlumnos,
                    getAlumnosFromCurso,
@@ -210,4 +228,5 @@ module.exports = { getAlumnosSubscribed,
                    getTotalAlumnosAll,
                    getTotalStarsAlumno,
                    insertAlumno,
-                   deleteAlumnos }
+                   deleteAlumnos,
+                   getTotalAlumnosByGroup }

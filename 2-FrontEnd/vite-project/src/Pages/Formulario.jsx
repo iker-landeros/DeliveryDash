@@ -15,7 +15,7 @@ const  Formulario =() => {
         })
     const data = await reponse.json()
     if(data.token){
-        navigate('/Dashboard/general')
+        navigate('/Dashboard/1')
         localStorage.setItem('token',data.token)
         
     }else{

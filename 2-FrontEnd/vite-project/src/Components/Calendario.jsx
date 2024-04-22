@@ -5,44 +5,8 @@ import despues from "../assets/despues.svg"
 
 const  Calendario =() => {
   const [dias, setDias] = useState([]);
-    const [usuarios, setUsuarios] = useState([
-        {
-          id: 1,
-          date: new Date("2024-04-02T06:00:00.000Z"),
-          total: 100
-        },
-        {
-          id: 2,
-          date: new Date("2024-04-03T06:00:00.000Z"),
-          total: 20
-        },
-        {
-          id: 3,
-          date: new Date("2024-04-26T06:00:00.000Z"),
-          total: 76
-        },
-        {
-          id: 4,
-          date: new Date("2024-04-01T06:00:00.000Z"),
-          total: 23
-        },
-        {
-          id: 5,
-          date: new Date("2024-04-13T06:00:00.000Z"),
-          total: 43
-        },
-        {
-          id: 6,
-          date: new Date("2024-04-12T06:00:00.000Z"),
-          total: 23
-        },
-        {
-          id: 7,
-          date: new Date("2024-04-20T06:00:00.000Z"),
-          total: 87
-        }
-      ]);
-  const [date, setDate] = useState(new Date());
+  const [updatedArray, setUpdatedArray] = useState([]);
+
   useEffect(() => {
     fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/total/tiempo/dia', {
       method: "GET",
@@ -53,10 +17,57 @@ const  Calendario =() => {
     })
       .then(data => data.json())
       .then((data) => {
-        setDias(data)
-        console.log(dias)
+        setDias(data);
+        const updatedArray2 = dias.map(item => {
+          return { 
+            date: new Date(item.fecha), 
+            total: item.usuarios 
+          };
+        });
+        setUpdatedArray(updatedArray2)
       })
   }, [])
+  console.log("updatedArray",updatedArray)
+
+
+  const [usuarios, setUsuarios] = useState([
+      {
+        id: 1,
+        date: new Date("2024-04-02T06:00:00.000Z"),
+        total: 100
+      },
+      {
+        id: 2,
+        date: new Date("2024-04-03T06:00:00.000Z"),
+        total: 20
+      },
+      {
+        id: 3,
+        date: new Date("2024-04-26T06:00:00.000Z"),
+        total: 76
+      },
+      {
+        id: 4,
+        date: new Date("2024-04-01T06:00:00.000Z"),
+        total: 23
+      },
+      {
+        id: 5,
+        date: new Date("2024-04-13T06:00:00.000Z"),
+        total: 43
+      },
+      {
+        id: 6,
+        date: new Date("2024-04-12T06:00:00.000Z"),
+        total: 23
+      },
+      {
+        id: 7,
+        date: new Date("2024-04-20T06:00:00.000Z"),
+        total: 87
+      }
+    ]);
+  const [date, setDate] = useState(new Date());
   const months = [
     "Enero", "Febrero", "Marzo", 
     "Abril", "Mayo", "Junio",
@@ -95,10 +106,9 @@ const  Calendario =() => {
       return '#00546E';
     }
   };
-  
+  console.log("array",updatedArray)
   const usuario = usuarios.find(usuario => usuario.date.getTime() === day.getTime());
   const backgroundColor = usuario ? getBackgroundColor(usuario.total) : 'default-color';
-
   return (
       <li key={day} className={classNames.join('')}>
         <div>

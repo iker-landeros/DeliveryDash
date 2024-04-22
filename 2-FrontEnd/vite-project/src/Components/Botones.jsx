@@ -3,25 +3,16 @@ import { Link,Outlet } from "react-router-dom"
 import React, { useState } from 'react';
 
 
-const  Botones =() => {
-
-  const [botonPresionado, setBotonPresionado] = useState(() => {
-    const partesRuta = window.location.pathname.split('/');
-    return partesRuta[partesRuta.length - 1];
-  });
-  
+const  Botones =({opcion,setOpcion}) => {  
   return (
     <>
-    <nav className="div-controlador-botones">
+    <div className="div-controlador-botones">
           <div className="div-botones">
-            <Link to='general' className={botonPresionado === 'general' ? 'boton-presionado' : 'boton'} onClick={() => setBotonPresionado('general')}>General</Link>
-            <Link to='actividad' className={botonPresionado === 'actividad' ? 'boton-presionado' : 'boton'} onClick={() => setBotonPresionado('actividad')}>Actividad</Link>
-            <Link to='inscripciones' className={botonPresionado === 'inscripciones' ? 'boton-presionado' : 'boton'} onClick={() => setBotonPresionado('inscripciones')}>Inscripciones</Link>
+            <button className={opcion === 0 ? 'boton-presionado' : 'boton'} onClick={() => setOpcion(0)}>General</button>
+            <button className={opcion === 1 ? 'boton-presionado' : 'boton'} onClick={() => setOpcion(1)}>Actividad</button>
+            <button className={opcion === 2 ? 'boton-presionado' : 'boton'} onClick={() => setOpcion(2)}>Inscripciones</button>
           </div>
-    </nav>
-    <section>
-        <Outlet/>
-    </section> 
+    </div>
     </>   
   )
 }

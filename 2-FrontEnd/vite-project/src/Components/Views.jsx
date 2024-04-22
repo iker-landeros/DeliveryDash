@@ -11,10 +11,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Formulario />}></Route>
-        <Route path="/Dashboard"element={<ProtectedRoute><Dashboard /></ProtectedRoute>}>
-          <Route path="actividad" element={<ProtectedRoute><Analitica /></ProtectedRoute>} />
-          <Route path="general" element={<ProtectedRoute><General /></ProtectedRoute>} />
-          <Route path="inscripciones" element={<ProtectedRoute><Inscripciones /></ProtectedRoute>} />
+        <Route path="/Dashboard/:id"element={<ProtectedRoute><Dashboard /></ProtectedRoute>}>
         </Route>
       </Routes>
     </BrowserRouter>

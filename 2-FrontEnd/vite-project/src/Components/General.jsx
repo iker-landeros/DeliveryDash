@@ -3,33 +3,19 @@ import { useState,useEffect } from "react";
 import TarjetaDashboard from "./TarjetaDashboard";
 import TarjetaLeaderBoard from "./TarjetaLeaderBoard";
 import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useParams } from "react-router-dom";
 
 const  General =() => {
   const [jt, setJt] = useState([]);
   const [tt, setTt] = useState([]);
-  const [sesiones, setSesiones] = useState([]);
-  const [leaders, setLeaders] = useState([]);
   const [et, setEt] = useState([]);
   const [nc, setNc] = useState([]);
-  const [pn, setPn] = useState([]);
-  const data = [
-    {
-      name: 'Nivel 1',
-      tiempo: 4000
-    },
-    {
-      name: 'Nivel 2',
-      tiempo: 3000
-    },
-    {
-      name: 'Nivel 3',
-      tiempo: 2000
-    },
-    {
-      name: 'Nivel 4',
-      tiempo: 2780
-    },
-  ];  
+
+  const [pn, setPn] = useState([]); 
+  const [leaders, setLeaders] = useState([]);
+
+  const { id } = useParams();
+
   const fetchData = (url, setData) => {
     fetch(url, {
       method: "GET",
@@ -58,7 +44,7 @@ const  General =() => {
   }, [])
 
   useEffect(() => {
-    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/subscribed/total', {
+    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/total/tiempo', {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -100,21 +86,37 @@ const  General =() => {
   }, [])
 
   useEffect(() => {
-    fetchData('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/subscribed/time', setSesiones);
-  }, []);
-
-  useEffect(() => {
     fetchData('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/time', setLeaders);
   }, []);
 
   useEffect(() => {
     fetchData('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/total/nivel', setPn);
   }, []);
+
+
+  useEffect(() => {
+    const saveGames = () => {
+      fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/subscribed/time', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+        },
+        body: JSON.stringify({
+          cursoID: id 
+        }),
+      })
+        .then((res) => res.json())
+        .then((result) => setLeaders(result))
+        .catch((err) => console.log('error'))
+    }
+    saveGames()
+  },[id]);
   return (
     <div>
         <div className='div-tarjetas'>
             <TarjetaDashboard id={1} titulo="Jugadores totales" dato={jt.alumnoCount}/>
-            <TarjetaDashboard id={2} titulo="Minutos totales" dato={tt.alumnoCount}/>
+            <TarjetaDashboard id={2} titulo="Minutos totales" dato={tt.minutos}/>
             <TarjetaDashboard id={3} titulo="Estrellas totales" dato={et.estrellasTotales}/>
             <TarjetaDashboard id={4} titulo="Niveles Completados" dato={nc.NivelesCompletados}/>
         </div>

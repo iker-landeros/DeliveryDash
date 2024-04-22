@@ -88,6 +88,69 @@ const getPromedioTiempoNivel = (req, res) => {
     })
 }
 
+const getPromedioTiempoNivelByCourse = (req, res) => {
+    const { cursoID } = req.body
+    const sql = `SELECT nc.nivelID as nivel, 
+                    ROUND(AVG((TIMESTAMPDIFF(MINUTE, dateInicio, dateFinal))),2) AS promedio
+                FROM NivelesCompletados as nc
+                JOIN Alumnos as a
+                ON nc.alumnoID = a.alumnoID
+                JOIN Inscripciones as i
+                ON a.alumnoID = i.alumnoID
+                WHERE i.cursoID = ?
+                GROUP BY nc.nivelID`
+
+    pool.query(sql, [cursoID], (err, results, fields) => {
+        if (err) res.json(err)
+        res.json(results)
+    })
+}
+
+const getMinutosTotalesByCourse = (req, res) => {
+    const { cursoID } = req.body
+    const sql = `SELECT SUM((TIMESTAMPDIFF(MINUTE, dateInicio, dateFinal))) as minutos
+                FROM NivelesCompletados as nc
+                INNER JOIN Alumnos as a
+                ON nc.alumnoID = a.alumnoID
+                INNER JOIN Inscripciones as i
+                ON a.alumnoID = i.alumnoID
+                WHERE i.cursoID = ?
+                GROUP BY cursoID`
+
+    pool.query(sql, [cursoID], (err, results, fields) => {
+        if (err) res.json(err)
+        res.json(results)
+    })
+}
+
+
+const getEstrellasTotalesByCourse = (req, res) => {
+    const { cursoID } = req.body
+    const sql = `SELECT sum(obtainedStars) AS estrellasTotales
+                FROM NivelesCompletados as nc
+                JOIN Alumnos as a
+                ON nc.alumnoID = a.alumnoID
+                JOIN Inscripciones as i
+                ON a.alumnoID = i.alumnoID
+                WHERE i.cursoID = ?
+                GROUP BY i.cursoID;`
+
+    pool.query(sql, [cursoID], (err, results, fields) => {
+        if (err) res.json(err)
+        res.json(results)
+    })
+}
+const getTotalNivelesCompletadosByCourse = (req, res) => {
+    const { cursoID } = req.body
+    const sql = `SELECT COUNT(*) as NivelesCompletados
+                    FROM NivelesCompletados`
+
+    pool.query(sql, [cursoID], (err, results, fields) => {
+        if (err) res.json(err)
+        res.json(results)
+    })
+}
+
 const getTiempoTotal = (req, res) => {
     const sql = `SELECT SUM((TIMESTAMPDIFF(MINUTE, dateInicio, dateFinal))) as minutos
                 FROM NivelesCompletados`
@@ -110,4 +173,16 @@ const getUsuarioConectadosDia = (req, res) => {
         res.json(results)
     })
 }
-module.exports = { getNivelesCompletados, getNivelesCompletadosByAlumno, insertNivelCompletado, getTotalStars, getHorasTotalPorMes, getTotalNivelesCompletados, getPromedioTiempoNivel, getTiempoTotal, getUsuarioConectadosDia }
+module.exports = {  getNivelesCompletados, 
+                    getNivelesCompletadosByAlumno, 
+                    insertNivelCompletado, 
+                    getTotalStars, 
+                    getHorasTotalPorMes, 
+                    getTotalNivelesCompletados, 
+                    getPromedioTiempoNivel, 
+                    getTiempoTotal, 
+                    getUsuarioConectadosDia,
+                    getPromedioTiempoNivelByCourse,
+                    getEstrellasTotalesByCourse,
+                    getTotalNivelesCompletadosByCourse,
+                    getMinutosTotalesByCourse }

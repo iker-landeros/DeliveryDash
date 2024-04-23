@@ -10,19 +10,29 @@ const  PopUpDescargar = () => {
 
     const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
     const [alumnos,setAlumnos] = useState([]);
+
+    const fetchApi = async (url,data,setFunction,isArray) =>{
+        try {
+            const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+            },
+            body: JSON.stringify({
+                cursoID: data 
+            }),
+            })
+            const result = await response.json();
+            setFunction(isArray ? result : result[0]);
+        } catch (err){
+            console.log('error', err);
+        }
+    }
     useEffect(() => {
-      fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos', {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
-        },
-      })
-        .then(data => data.json())
-        .then((data) => {
-          setAlumnos(data)
-        })
-    }, [])
+    fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/total/curso/info',
+    id,setAlumnos,true)
+    },[id]);
     
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -33,18 +43,9 @@ const  PopUpDescargar = () => {
     const handleCloseModal = () => {
         setModalVisible(false);
     };
-    const jugadores = [
-        {"id":1, "usuario" : "usuario 1", "horas" : 20},
-        {"id":2, "usuario" : "usuario 2", "horas" : 30},
-        {"id":3, "usuario" : "usuario 3", "horas" : 40},
-        {"id":4, "usuario" : "usuario 4", "horas" : 50},
-        {"id":5, "usuario" : "usuario 5", "horas" : 60}
-    ]
 
-    const [myVar, setMyVar] = useState(1);
     return (
     <>
-        {myVar === 1 ? (
         <div>
             <a href="#openModal2" className="modalAgregar" onClick={handleOpenModal}>Descagar</a>
     
@@ -65,18 +66,6 @@ const  PopUpDescargar = () => {
                 </div>
             </div>
         </div>
-        ) : (
-        <div>
-            <a href="#openModal2" className="modalAgregar" onClick={handleOpenModal}>Agregar Curso</a>
-    
-            <div id="openModal2" className="modalDialog">
-                <div>
-                    <a href="#close" title="Close" className="close" onClick={handleCloseModal}>X</a>
-                    <p>Curso agregado correctamente</p>
-                </div>
-            </div>
-        </div>
-        )}
     </>
     )
 }

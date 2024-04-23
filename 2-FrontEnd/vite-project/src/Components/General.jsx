@@ -48,10 +48,9 @@ const  General =() => {
     fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/promedio/nivel/curso',
     id,setPn,true)
 
-    {/*Arreglar
-      fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/stars/total/curso',
+    fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/stars/total/curso',
     id,setEt)
-  */}
+
   },[id]);
   console.log(leaders)
   return (

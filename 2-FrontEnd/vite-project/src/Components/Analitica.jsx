@@ -2,23 +2,10 @@ import "../Styles/Analitica.css"
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import Calendario from "./Calendario";
 import { useState,useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const  Analitica =() => {
-
-  const data = [
-    { month: 'Enero', horas: 10 },
-    { month: 'Febrero', horas: 15 },
-    { month: 'Marzo', horas: 20 },
-    { month: 'Abril', horas: 18 },
-    { month: 'Mayo', horas: 25 },
-    { month: 'Junio', horas: 30 },
-    { month: 'Julio', horas: 10 },
-    { month: 'Agosto', horas: 15 },
-    { month: 'Septiembre', horas: 20 },
-    { month: 'Octubre', horas: 18 },
-    { month: 'Noviembre', horas: 25 },
-    { month: 'Diciembre', horas: 30 },
-  ];
+  const { id } = useParams();
   const [nc,setNc] = useState([]);
   useEffect(() => {
     fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/horas/mes', {
@@ -30,9 +17,9 @@ const  Analitica =() => {
     })
       .then(data => data.json())
       .then((data) => {
-        setNc(data[0])
+        setNc(data)
       })
-  }, [])
+  }, [id]);
   return (
     <div>
       <div className='div-grafica-containersa'>
@@ -41,12 +28,12 @@ const  Analitica =() => {
             <div className="div-grafica-tituloa">
               <p>Horas totales por mes</p>
               <ResponsiveContainer width="100%" height={400}>
-                <LineChart data={data} margin={{ right: 100}}>
-                  <XAxis dataKey="month" />
+                <LineChart data={nc} margin={{ right: 100}}>
+                  <XAxis dataKey="mes" />
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Line type="monotone" dataKey="horas" stroke="#2E77BB" />
+                  <Line type="monotone" dataKey="minutos" stroke="#2E77BB" />
                 </LineChart>
               </ResponsiveContainer>
             </div>

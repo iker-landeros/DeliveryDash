@@ -1,21 +1,27 @@
 .container-botones{
     width: 100%;
     justify-content: space-between;
-    background-color: blueviolet;
 }
 .tabladato{
-    width: 25%;
+    flex: 1;
+    width: 100%;
+}
+.tabladatocheck{
+    display: flex;
+    flex: 1;
+    overflow-x:hidden;
 }
 .tabla{
     width: 100%;
     display: block;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
     font-weight: bold;
 }
 .tablain{
     width: 100%;
     display: flex;
+}
+.columna{
+    flex: 1;
 }
 .barrain{
     display: flex;

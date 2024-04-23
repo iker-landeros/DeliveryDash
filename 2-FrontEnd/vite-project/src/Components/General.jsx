@@ -18,22 +18,22 @@ const  General =() => {
 
   const fetchApi = async (url,data,setFunction,isArray) =>{
     try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
-      },
-      body: JSON.stringify({
-        cursoID: data 
-      }),
-    })
-    const result = await response.json();
-    setFunction(isArray ? result : result[0]);
-  } catch (err){
-    console.log('error', err);
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+        },
+        body: JSON.stringify({
+          cursoID: data 
+        }),
+      })
+      const result = await response.json();
+      setFunction(isArray ? result : result[0]);
+    } catch (err){
+      console.log('error', err);
+    }
   }
-}
 
   useEffect(() => {
     fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/total/curso',
@@ -53,6 +53,7 @@ const  General =() => {
     id,setEt)
   */}
   },[id]);
+  console.log(leaders)
   return (
     <div>
         <div className='div-tarjetas'>

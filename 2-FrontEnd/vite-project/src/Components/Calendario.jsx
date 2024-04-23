@@ -2,71 +2,48 @@ import "../Styles/Calendario.css"
 import React, { useState,useEffect  } from 'react';
 import antes from "../assets/antes.svg"
 import despues from "../assets/despues.svg"
+import { useParams } from "react-router-dom";
+
 
 const  Calendario =() => {
+  const { id } = useParams();
   const [dias, setDias] = useState([]);
   const [updatedArray, setUpdatedArray] = useState([]);
-
+  const [isFetching, setIsFetching] = useState(true);
+  const [error, setError] = useState(null);
   useEffect(() => {
-    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/total/tiempo/dia', {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
-      },
-    })
-      .then(data => data.json())
-      .then((data) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/total/tiempo/dia",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token") || ""}`,
+            },
+          }
+        );
+        const data = await response.json();
         setDias(data);
-        const updatedArray2 = dias.map(item => {
-          return { 
-            date: new Date(item.fecha), 
-            total: item.usuarios 
-          };
-        });
-        setUpdatedArray(updatedArray2)
-      })
-  }, [])
-  console.log("updatedArray",updatedArray)
-
-
-  const [usuarios, setUsuarios] = useState([
-      {
-        id: 1,
-        date: new Date("2024-04-02T06:00:00.000Z"),
-        total: 100
-      },
-      {
-        id: 2,
-        date: new Date("2024-04-03T06:00:00.000Z"),
-        total: 20
-      },
-      {
-        id: 3,
-        date: new Date("2024-04-26T06:00:00.000Z"),
-        total: 76
-      },
-      {
-        id: 4,
-        date: new Date("2024-04-01T06:00:00.000Z"),
-        total: 23
-      },
-      {
-        id: 5,
-        date: new Date("2024-04-13T06:00:00.000Z"),
-        total: 43
-      },
-      {
-        id: 6,
-        date: new Date("2024-04-12T06:00:00.000Z"),
-        total: 23
-      },
-      {
-        id: 7,
-        date: new Date("2024-04-20T06:00:00.000Z"),
-        total: 87
+        const updatedArray2 = data.map((item,index) => ({
+          id: index + 1,
+          date: new Date(new Date(item.fecha).getFullYear(), new Date(item.fecha).getMonth(), new Date(item.fecha).getDate(), 0, 0, 0), // Aquí se establece la hora a las 00:00
+          total: item.usuarios,
+        }));
+        setUpdatedArray(updatedArray2);
+        console.log(updatedArray2);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setIsFetching(false);
       }
-    ]);
+    };
+
+    fetchData();
+  }, [id]);
+  console.log(updatedArray)
+
   const [date, setDate] = useState(new Date());
   const months = [
     "Enero", "Febrero", "Marzo", 
@@ -75,7 +52,7 @@ const  Calendario =() => {
     "Octubre", "Noviembre", "Diciembre"
   ];
   const prevMonth = () => {
-    const currDate = new Date();
+    const currDate = new Date(date);
     currDate.setMonth(date.getMonth() - 1);
     setDate(currDate);
   }
@@ -94,20 +71,20 @@ const  Calendario =() => {
   const renderDay = (day) => {
   const classNames = ['day-calendar'];
   const getBackgroundColor = (total) => {
-    if(total > 0 && total <= 20) {
+    if(total > 0 && total <= 2) {
       return '#81C3EA';
-    } else if (total > 20 && total <= 40) {
+    } else if (total > 2 && total <= 3) {
       return '#5A92B5';
-    } else if (total > 40 && total <= 60) {
+    } else if (total > 3 && total <= 4) {
       return '#337F9E';
-    } else if (total > 60 && total <= 80) {
+    } else if (total > 5 && total <= 10) {
       return '#106D87';
-    } else if (total > 80) {
+    } else if (total > 10) {
       return '#00546E';
     }
   };
-  console.log("array",updatedArray)
-  const usuario = usuarios.find(usuario => usuario.date.getTime() === day.getTime());
+  console.log("api",updatedArray)
+  const usuario = updatedArray.find(usuario => usuario.date.getTime() === day.getTime());
   const backgroundColor = usuario ? getBackgroundColor(usuario.total) : 'default-color';
   return (
       <li key={day} className={classNames.join('')}>
@@ -167,6 +144,8 @@ const  Calendario =() => {
 
   return (
     <div className="calendar">
+      {isFetching && <p>Cargando...</p>}
+      {error && <p>Error: {error.message}</p>}
       {renderCalendar()}
     </div>
   );

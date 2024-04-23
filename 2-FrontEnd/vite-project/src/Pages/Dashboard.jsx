@@ -19,7 +19,7 @@ const  Dashboard = () => {
       .then((data) => {
         setCursos(data)
       })
-  }, [])
+  }, [id])
 
   const [value2,setValue2] = useState(1);
   const handleSelectChange = (event) => {

@@ -17,6 +17,22 @@ const  Alumnos =() => {
         console.log(data)
       })
   }, [])
+  const [curso, setCurso] = useState([]);
+  useEffect(() => {
+    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/cursos', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+      },
+    })
+      .then(data => data.json())
+      .then((data) => {
+        setCurso(data)
+        console.log(curso)
+        console.log(data)
+      })
+  }, [])
   const handleOnAgregar = () => {
     console.log("Agregando",idsSeleccionados)
   };
@@ -40,23 +56,49 @@ const  Alumnos =() => {
     </div>
     <div className="tabla">
         <div className="tablain">
-          <p className="tabladato"></p>
-          <p className="tabladato">ID</p>
-          <p className="tabladato">Nombre</p>
-          <p className="tabladato">Correo</p>
+          <div className="columna">
+            <p className="tabladato">Alumno</p>
+            {alumnos.map(alumno =>
+              <div className="tablain" key={alumno.alumnoID}>
+                <div className="tabladatocheck">
+                  <input type="checkbox"  
+                  onChange={handleCheckboxChange}
+                  key={alumno.alumnoID} 
+                  id={alumno.alumnoID}></input>
+                  <p>{alumno.nickname}</p>
+                </div>
+              </div>    
+            )}
+          </div>
+          <div className="columna">
+            <p className="tabladato">Curso</p>
+                {curso.map(usuario =>
+                <div className="tablain" key={usuario.cursoID}>
+                  <div className="tabladatocheck">
+                    <input type="checkbox"  
+                    onChange={handleCheckboxChange}
+                    key={usuario.cursoID} 
+                    id={usuario.cursoID}></input>
+                    <p>{usuario.nombre}</p>
+                  </div>
+                </div>   
+                )}
+          </div>
+          <div className="columna">
+            <p className="tabladato">Profesor</p>
+                {curso.map(usuario =>
+                <div className="tablain" key={usuario.cursoID}>
+                  <div className="tabladatocheck">
+                    <input type="checkbox"  
+                    onChange={handleCheckboxChange}
+                    key={usuario.cursoID} 
+                    id={usuario.cursoID}></input>
+                    <p>{usuario.nombre}</p>
+                  </div>
+                </div>   
+                )}
+          </div>
         </div>
-        {alumnos.map(alumno =>
-          <div className="tablain" key={alumno.alumnoID}>
-            <input type="checkbox" 
-            className="tabladato" 
-            onChange={handleCheckboxChange}
-            key={alumno.alumnoID} 
-            id={alumno.alumnoID}></input>
-            <p className="tabladato">{alumno.alumnoID}</p>
-            <p className="tabladato">{alumno.nickname}</p>
-            <p className="tabladato">{alumno.mail}</p>
-          </div>    
-        )}
     </div>
     </>
   )

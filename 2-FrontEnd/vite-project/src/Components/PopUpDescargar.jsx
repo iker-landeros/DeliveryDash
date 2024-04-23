@@ -30,7 +30,7 @@ const  PopUpDescargar = () => {
         }
     }
     useEffect(() => {
-    fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/total/curso/info',
+    fetchApi('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/alumnos/total/curso/info',
     id,setAlumnos,true)
     },[id]);
     

@@ -36,19 +36,19 @@ const  General =() => {
   }
 
   useEffect(() => {
-    fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/total/curso',
+    fetchApi('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/alumnos/total/curso',
     id,setJt)
-    fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/total/nivel/curso',
+    fetchApi('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/nivelescompletados/total/nivel/curso',
     id,setNc)
-    fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/total/tiempo/curso',
+    fetchApi('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/nivelescompletados/total/tiempo/curso',
     id,setTt)
 
-    fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/subscribed/time',
+    fetchApi('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/alumnos/subscribed/time',
     id,setLeaders,true)
-    fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/promedio/nivel/curso',
+    fetchApi('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/nivelescompletados/promedio/nivel/curso',
     id,setPn,true)
 
-    fetchApi('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/stars/total/curso',
+    fetchApi('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/nivelescompletados/stars/total/curso',
     id,setEt)
 
   },[id]);

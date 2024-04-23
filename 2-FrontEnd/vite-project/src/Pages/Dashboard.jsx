@@ -8,7 +8,7 @@ const  Dashboard = () => {
   const { id } = useParams()
   const [cursos,setCursos] = useState([]);
   useEffect(() => {
-    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/cursos', {
+    fetch('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/cursos', {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

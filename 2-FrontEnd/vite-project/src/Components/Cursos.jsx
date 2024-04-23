@@ -5,7 +5,7 @@ import { useState,useEffect } from "react";
 const  Cursos =() => {
   const [curso, setCurso] = useState([]);
   useEffect(() => {
-    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/cursos', {
+    fetch('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/cursos', {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -36,7 +36,7 @@ const  Cursos =() => {
   const handleOnEliminar2 = async (evt) => {
     evt.preventDefault();
     const data = { idsSeleccionados };
-    const response = await fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/cursos/delete', {
+    const response = await fetch('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/cursos/delete', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

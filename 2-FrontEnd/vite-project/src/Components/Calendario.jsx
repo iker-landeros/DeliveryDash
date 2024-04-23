@@ -14,8 +14,7 @@ const  Calendario =() => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/nivelescompletados/total/tiempo/dia",
+        const response = await fetch("https://e0foiighd7.execute-api.us-east-1.amazonaws.com/nivelescompletados/total/tiempo/dia",
           {
             method: "GET",
             headers: {

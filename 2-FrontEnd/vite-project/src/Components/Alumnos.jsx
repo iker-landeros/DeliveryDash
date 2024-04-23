@@ -4,7 +4,7 @@ import { useState,useEffect } from "react";
 const  Alumnos =() => {
   const [alumnos,setAlumnos] = useState([]);
   useEffect(() => {
-    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/alumnos/subscribed', {
+    fetch('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/alumnos/subscribed', {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -19,7 +19,7 @@ const  Alumnos =() => {
   }, [])
   const [curso, setCurso] = useState([]);
   useEffect(() => {
-    fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/cursos', {
+    fetch('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/cursos', {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

@@ -9,7 +9,7 @@ const  Formulario =() => {
   const Login = async (evt) => {
     evt.preventDefault()
     const form = new FormData(loginForm.current)
-    const reponse = await fetch('http://deliverydashapi-env.eba-i3jft8cm.us-east-1.elasticbeanstalk.com/profesores/login',{
+    const reponse = await fetch('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/profesores/login',{
         method: "POST",
         body: form
         })

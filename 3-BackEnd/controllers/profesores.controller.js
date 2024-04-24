@@ -1,5 +1,4 @@
 const pool = require('../helpers/mysql-config')
-const jwt = require('jsonwebtoken')
 
 const getProfesores = (req, res) => {
     const sql = `SELECT * FROM Profesores`
@@ -30,26 +29,6 @@ const insertProfesor = (req, res) => {
     }
 }
 
-const login = (req, res) => {
-    const {mail, password} = req.body
-    let token = ''
-    let result = {}
-
-    const sql = `SELECT COUNT(*) AS cantidad FROM Profesores
-                 WHERE mail = ? AND password = SHA2(?, 224)`
-    pool.query(sql, [mail, password], (err, results, fields) => {
-        if (err) res.json(err)
-
-        if (results[0].cantidad === 1) {
-            token = jwt.sign({ mail: mail }, process.env.KEYPHRASE, { expiresIn: 7200 })
-            result = { token: token, status:200, mensaje: 'Usuario autenticado correctamente' }
-        } else {
-            result = { status: 404, mensaje: 'Correo o contraseña incorrectos' }
-        }
-        res.json(result)
-    })
-}
-
 const deleteProfesores = (req, res) => {
     const { ids } = req.body
     const sql = `CALL deleteProfesores(?)`
@@ -60,4 +39,4 @@ const deleteProfesores = (req, res) => {
     })
 }
 
-module.exports = { getProfesores, insertProfesor, login, deleteProfesores }
+module.exports = { getProfesores, insertProfesor, deleteProfesores }

@@ -9,14 +9,11 @@ const niveles = require('./routes/niveles')
 const nivelescompletados = require('./routes/nivelescompletados')
 const cursos = require('./routes/cursos')
 const inscripciones = require('./routes/inscripciones')
+const login = require('./routes/login')
 
 const port = process.env.PORT || 3000
 
-app.use(
-    cors({
-        origin: '*',
-    })
-)
+app.use(cors())
 app.use(multer().array())
 app.use(express.json())
 
@@ -26,6 +23,7 @@ app.use('/', niveles)
 app.use('/', nivelescompletados)
 app.use('/', cursos)
 app.use('/', inscripciones)
+app.use('/', login)
 
 app.listen(port, () => {
     console.log(`Conectado desde el puerto ${port}`)

@@ -1,14 +1,7 @@
 .fondo-formulario{
   height: 100vh;
   width: 100%;
-}
-.imagen-fondo{
-  width: 100%;
-  height: 100%;
-
   background: linear-gradient(to right,#0270BB, #642E92);
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 .container{
   width: 100%;
@@ -16,9 +9,37 @@
   color: white;
   font-size: 30px;
 
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center ;
+  flex-wrap: wrap;
+}
+.aulify-image-out{
+  width: 100%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
+}
+.aulify-image{
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.imagen-alu{
+  height: 80%;
+}
+.imagen-logo-head{
+  height: 80%;  
+  visibility: hidden;
+}
+.imagen-formulario{
+  display: flex;
+  margin-top: 30px;
 }
 .container-in{
   display: flex;
@@ -34,16 +55,25 @@
   align-items: center;
   text-align: center;
   display: flex;
+  height: 80vh;
+}
+.formulario p{
+  font-size: 40px;
 }
 .div-imagen-f{
   flex: 1;
   justify-content: center;
+  align-items: center;
   display: flex;
+}
+.imagen-grande{
+  height: 80%;
 }
 .formulario input{
   border-radius: 20px;
   border: none;
   padding: 10px;
+  width: 100%;
 }
 .formulario button{
   background-color: #F6BA27;
@@ -56,16 +86,19 @@
   cursor: pointer;
 }
 .div-boton{
-  margin-top: 10px;
-
+  margin-top: 30px;
+  width: 110%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   .div-imagen-f {
     visibility: hidden;
     height: 0px;
     flex: 0;
+  }
+  .imagen-logo-head{
+    visibility: visible;
   }
 }

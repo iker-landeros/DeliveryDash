@@ -92,7 +92,7 @@ const  General =() => {
             <div className='div-leaderboard'>
                 <div className="leaderboard-container">
                   <div className='leaderboard-centrar'>
-                      <p>Usuarios que mas jugaron</p>
+                      <p>Usuarios que más jugaron</p>
                   </div>
                   <div className='leaderboard-titulo'>
                       <p className="dash-negritas">Username</p>

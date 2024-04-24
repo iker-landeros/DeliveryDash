@@ -10,7 +10,6 @@ const login = (req, res) => {
     pool.query(sql, [mail, password], (err, results, fields) => {
         if (err) res.json(err)
 
-        console.log(results);
         if (results[0][0].cuenta === 1) {
             const user = results[0][0].isAdmin ? 'Admin' : 'Profesor'
             token = jwt.sign({ mail: mail, user:user }, process.env.KEYPHRASE, { expiresIn: 7200 })

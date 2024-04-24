@@ -1,10 +1,14 @@
 import "../Styles/Alumnos.css"
 import { useState,useEffect } from "react";
-
+import Card from "./CardUser"
+import CardCurso from "./CardCurso"
+import CardProf from "./CardProfesor"
 const  Alumnos =() => {
   const [alumnos,setAlumnos] = useState([]);
+  const [profesores,setProfesores] = useState([]);
+  const [input,setInput] = useState([]);
   useEffect(() => {
-    fetch('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/alumnos/subscribed', {
+    fetch(`${import.meta.env.VITE_SECRET}/alumnos/subscribed`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -14,12 +18,11 @@ const  Alumnos =() => {
       .then(data => data.json())
       .then((data) => {
         setAlumnos(data)
-        console.log(data)
       })
   }, [])
-  const [curso, setCurso] = useState([]);
+  const [cursos, setCursos] = useState([]);
   useEffect(() => {
-    fetch('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/cursos', {
+    fetch(`${import.meta.env.VITE_SECRET}/cursos`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -28,75 +31,91 @@ const  Alumnos =() => {
     })
       .then(data => data.json())
       .then((data) => {
-        setCurso(data)
-        console.log(curso)
-        console.log(data)
+        setCursos(data)
       })
   }, [])
-  const handleOnAgregar = () => {
-    console.log("Agregando",idsSeleccionados)
-  };
-  const handleOnEliminar = () => {
-    console.log("Elminando",idsSeleccionados)
-  };
-  const [idsSeleccionados, setIdsSeleccionados] = useState([]);
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_SECRET}/profesores`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+      },
+    })
+      .then(data => data.json())
+      .then((data) => {
+        setProfesores(data)
+      })
+  }, [])
 
-  const handleCheckboxChange = (event) => {
-    const id = event.target.id;
-    if (event.target.checked) {
-      setIdsSeleccionados([...idsSeleccionados, id]);
-    } else {
-      setIdsSeleccionados(idsSeleccionados.filter(item => item !== id));
-    }
+  const [searchValue, setSearchValue] = useState(''); // Estado para el valor de búsqueda
+
+  const onChangeUsuario = (e) => {
+    const value = e.target.value.toLowerCase();
+    setSearchValue(value); 
   };
+  const filteredAlumnos = alumnos.filter(alumno =>
+    alumno.nickname.toLowerCase().includes(searchValue) ||
+    alumno.mail.toLowerCase().includes(searchValue)
+  );
+
+  const users = filteredAlumnos.map(alumno =>
+    <Card key={alumno.alumnoID} user={alumno} />
+  );
+  const [searchValueC, setSearchValueC] = useState(''); // Estado para el valor de búsqueda
+
+  const onChangeCurso = (e) => {
+    const value = e.target.value.toLowerCase();
+    setSearchValueC(value); 
+  };
+  const filteredCursos = cursos.filter(curso =>
+    curso.nombre.toLowerCase().includes(searchValueC) 
+  );
+
+  const cursos2 = filteredCursos.map(alumno =>
+    <CardCurso key={alumno.cursoID} user={alumno} />
+  );
+
+  const [searchValueP, setSearchValueP] = useState('');
+  const onChangeProfesor = (e) => {
+    const value = e.target.value.toLowerCase();
+    setSearchValueP(value); 
+
+  };
+  const filteredProfesor = profesores.filter(curso =>
+    curso.fName.toLowerCase().includes(searchValueP)
+  );
+  const teachers = filteredProfesor.map(alumno =>
+    <CardProf key={alumno.cursoID} user={alumno} />
+  );
+
   return (
     <>
       <div className="barrain">
-      <button className="barrain-boton2" onClick={handleOnAgregar}>Agregar alumno</button>
+      <button className="barrain-boton2">Agregar alumno</button>
     </div>
     <div className="tabla">
         <div className="tablain">
           <div className="columna">
             <p className="tabladato">Alumno</p>
-            {alumnos.map(alumno =>
-              <div className="tablain" key={alumno.alumnoID}>
-                <div className="tabladatocheck">
-                  <input type="checkbox"  
-                  onChange={handleCheckboxChange}
-                  key={alumno.alumnoID} 
-                  id={alumno.alumnoID}></input>
-                  <p>{alumno.nickname}</p>
-                </div>
+            <input onChange={onChangeUsuario}></input>
+            <div className="user-cards">
+              {users}
               </div>    
-            )}
           </div>
           <div className="columna">
             <p className="tabladato">Curso</p>
-                {curso.map(usuario =>
-                <div className="tablain" key={usuario.cursoID}>
-                  <div className="tabladatocheck">
-                    <input type="checkbox"  
-                    onChange={handleCheckboxChange}
-                    key={usuario.cursoID} 
-                    id={usuario.cursoID}></input>
-                    <p>{usuario.nombre}</p>
-                  </div>
-                </div>   
-                )}
+            <input onChange={onChangeCurso}></input>
+            <div className="user-cards">
+            {cursos2}
+            </div>
           </div>
           <div className="columna">
             <p className="tabladato">Profesor</p>
-                {curso.map(usuario =>
-                <div className="tablain" key={usuario.cursoID}>
-                  <div className="tabladatocheck">
-                    <input type="checkbox"  
-                    onChange={handleCheckboxChange}
-                    key={usuario.cursoID} 
-                    id={usuario.cursoID}></input>
-                    <p>{usuario.nombre}</p>
-                  </div>
-                </div>   
-                )}
+            <input onChange={onChangeProfesor}></input>
+            <div className="user-cards">
+              {teachers}
+            </div>
           </div>
         </div>
     </div>

@@ -8,7 +8,7 @@ const  Dashboard = () => {
   const { id } = useParams()
   const [cursos,setCursos] = useState([]);
   useEffect(() => {
-    fetch('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/cursos', {
+    fetch(`${import.meta.env.VITE_SECRET}/cursos`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

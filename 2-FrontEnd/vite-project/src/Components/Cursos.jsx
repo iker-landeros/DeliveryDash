@@ -5,7 +5,7 @@ import { useState,useEffect } from "react";
 const  Cursos =() => {
   const [curso, setCurso] = useState([]);
   useEffect(() => {
-    fetch('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/cursos', {
+    fetch(`${import.meta.env.VITE_SECRET}/cursos`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -36,7 +36,7 @@ const  Cursos =() => {
   const handleOnEliminar2 = async (evt) => {
     evt.preventDefault();
     const data = { idsSeleccionados };
-    const response = await fetch('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/cursos/delete', {
+    const response = await fetch(`${import.meta.env.VITE_SECRET}/cursos/delete`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -14,7 +14,7 @@ const  Calendario =() => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://e0foiighd7.execute-api.us-east-1.amazonaws.com/nivelescompletados/total/tiempo/dia",
+        const response = await fetch(`${import.meta.env.VITE_SECRET}/nivelescompletados/total/tiempo/dia`,
           {
             method: "GET",
             headers: {

@@ -30,7 +30,7 @@ const  PopUpDescargar = () => {
         }
     }
     useEffect(() => {
-    fetchApi('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/alumnos/total/curso/info',
+    fetchApi(`${import.meta.env.VITE_SECRET}/alumnos/total/curso/info`,
     id,setAlumnos,true)
     },[id]);
     

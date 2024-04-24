@@ -23,6 +23,7 @@
     cursor: pointer;
     border-radius: 10px;
     height: 30px;
+    font-family: crossten;
     font-weight: bold;
 
     display: flex;
@@ -38,6 +39,7 @@
     cursor: pointer;
     border-radius: 10px;
     height: 30px;
+    font-family: crossten;
     font-weight: bold;
 
     display: flex;
@@ -53,6 +55,7 @@
     cursor: pointer;
     border-radius: 10px;
     height: 30px;
+    font-family: crossten;
     font-weight: bold;
 
     display: flex;

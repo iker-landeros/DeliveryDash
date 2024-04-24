@@ -36,19 +36,19 @@ const  General =() => {
   }
 
   useEffect(() => {
-    fetchApi('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/alumnos/total/curso',
+    fetchApi(`${import.meta.env.VITE_SECRET}/alumnos/total/curso`,
     id,setJt)
-    fetchApi('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/nivelescompletados/total/nivel/curso',
+    fetchApi(`${import.meta.env.VITE_SECRET}/nivelescompletados/total/nivel/curso`,
     id,setNc)
-    fetchApi('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/nivelescompletados/total/tiempo/curso',
+    fetchApi(`${import.meta.env.VITE_SECRET}/nivelescompletados/total/tiempo/curso`,
     id,setTt)
 
-    fetchApi('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/alumnos/subscribed/time',
+    fetchApi(`${import.meta.env.VITE_SECRET}/alumnos/subscribed/time`,
     id,setLeaders,true)
-    fetchApi('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/nivelescompletados/promedio/nivel/curso',
+    fetchApi(`${import.meta.env.VITE_SECRET}/nivelescompletados/promedio/nivel/curso`,
     id,setPn,true)
 
-    fetchApi('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/nivelescompletados/stars/total/curso',
+    fetchApi(`${import.meta.env.VITE_SECRET}/nivelescompletados/stars/total/curso`,
     id,setEt)
 
   },[id]);

@@ -8,7 +8,7 @@ const  Analitica =() => {
   const { id } = useParams();
   const [nc,setNc] = useState([]);
   useEffect(() => {
-    fetch('https://e0foiighd7.execute-api.us-east-1.amazonaws.com/nivelescompletados/horas/mes', {
+    fetch(`${import.meta.env.VITE_SECRET}/nivelescompletados/horas/mes`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

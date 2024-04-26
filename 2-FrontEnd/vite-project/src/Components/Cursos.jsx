@@ -15,8 +15,6 @@ const  Cursos =() => {
       .then(data => data.json())
       .then((data) => {
         setCurso(data)
-        console.log(curso)
-        console.log(data)
       })
   }, [])
   const handleOnEliminar = () => {
@@ -42,7 +40,9 @@ const  Cursos =() => {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        cursoID: data.idsSeleccionados[0] 
+      }),
     });
     const responseData = await response.json();
     if (responseData) console.log(responseData);
@@ -55,23 +55,23 @@ const  Cursos =() => {
         <button className="barrain-boton2"onClick={handleOnEliminar2}>Eliminar</button>
       </div>
 
-      <div className="tabla">
-          <div className="tablain">
-            <p className="tabladato"></p>
-            <p className="tabladato">Nombre</p>
-            <p className="tabladato">Fecha Inicio</p>
-            <p className="tabladato">Fecha Final</p>
+      <div className="tabla2">
+          <div className="tablain2">
+            <p className="tabladato2"></p>
+            <p className="tabladato2">Nombre</p>
+            <p className="tabladato2">Fecha Inicio</p>
+            <p className="tabladato2">Fecha Final</p>
           </div>
           {curso.map(usuario =>
-            <div className="tablain" key={usuario.cursoID}>
+            <div className="tablain2" key={usuario.cursoID}>
               <input type="checkbox" 
-              className="tabladato" 
+              className="tabladato2" 
               key={usuario.cursoID} 
               id={usuario.cursoID}
               onChange={handleCheckboxChange}></input>
-              <p className="tabladato">{usuario.nombre}</p>
-              <p className="tabladato">{usuario.dateInicio}</p>
-              <p className="tabladato">{usuario.dateFinal}</p>
+              <p className="tabladato2">{usuario.nombre}</p>
+              <p className="tabladato2">{usuario.dateInicio}</p>
+              <p className="tabladato2">{usuario.dateFinal}</p>
             </div>    
           )}
       </div>

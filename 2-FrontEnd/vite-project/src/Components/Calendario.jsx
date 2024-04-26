@@ -31,7 +31,6 @@ const  Calendario =() => {
           total: item.usuarios,
         }));
         setUpdatedArray(updatedArray2);
-        console.log(updatedArray2);
       } catch (err) {
         setError(err);
       } finally {
@@ -41,7 +40,6 @@ const  Calendario =() => {
 
     fetchData();
   }, [id]);
-  console.log(updatedArray)
 
   const [date, setDate] = useState(new Date());
   const months = [
@@ -70,19 +68,18 @@ const  Calendario =() => {
   const renderDay = (day) => {
   const classNames = ['day-calendar'];
   const getBackgroundColor = (total) => {
-    if(total > 0 && total <= 2) {
+    if(total > 0 && total <= 1) {
       return '#81C3EA';
-    } else if (total > 2 && total <= 3) {
+    } else if (total > 1 && total <= 2) {
       return '#5A92B5';
-    } else if (total > 3 && total <= 4) {
+    } else if (total > 2 && total <= 3) {
       return '#337F9E';
-    } else if (total > 5 && total <= 10) {
+    } else if (total > 3 && total <= 4) {
       return '#106D87';
-    } else if (total > 10) {
+    } else if (total > 5) {
       return '#00546E';
     }
   };
-  console.log("api",updatedArray)
   const usuario = updatedArray.find(usuario => usuario.date.getTime() === day.getTime());
   const backgroundColor = usuario ? getBackgroundColor(usuario.total) : 'default-color';
   return (

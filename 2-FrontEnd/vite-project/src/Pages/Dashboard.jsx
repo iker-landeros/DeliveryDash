@@ -21,10 +21,14 @@ const  Dashboard = () => {
       })
   }, [id])
 
-  const [value2,setValue2] = useState(1);
   const handleSelectChange = (event) => {
-    setValue2(parseInt(event.target.value));
     navigate(`/Dashboard/${parseInt(event.target.value)}`);
+  };
+
+  const handleOnSignOut = () =>{
+    localStorage.removeItem('admin')
+    localStorage.removeItem('token')
+    navigate('/');
   };
   return (
     <div className='fondo-dashboard'>
@@ -39,6 +43,7 @@ const  Dashboard = () => {
               )}
             </select>
             <button className="boton-descarga"><PopUpDescargar/></button>
+            <button className='boton-descarga' onClick={handleOnSignOut}>cerrar sesión</button>
           </div>
         </div>
         <p className='dashboard-titulo'>Dashboard</p>

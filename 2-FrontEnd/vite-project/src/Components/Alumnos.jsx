@@ -50,13 +50,14 @@ const  Alumnos =() => {
 
   const [searchValue, setSearchValue] = useState(''); // Estado para el valor de búsqueda
 
+
+  //Usuario
   const onChangeUsuario = (e) => {
     const value = e.target.value.toLowerCase();
     setSearchValue(value); 
   };
   const filteredAlumnos = alumnos.filter(alumno =>
-    alumno.nickname.toLowerCase().includes(searchValue) ||
-    alumno.mail.toLowerCase().includes(searchValue)
+    alumno.nickname.toLowerCase().includes(searchValue)
   );
 
   const users = filteredAlumnos.map(alumno =>
@@ -64,6 +65,7 @@ const  Alumnos =() => {
   );
   const [searchValueC, setSearchValueC] = useState(''); // Estado para el valor de búsqueda
 
+  //Curso
   const onChangeCurso = (e) => {
     const value = e.target.value.toLowerCase();
     setSearchValueC(value); 
@@ -76,6 +78,7 @@ const  Alumnos =() => {
     <CardCurso key={alumno.cursoID} user={alumno} />
   );
 
+  //Profesor
   const [searchValueP, setSearchValueP] = useState('');
   const onChangeProfesor = (e) => {
     const value = e.target.value.toLowerCase();
@@ -91,28 +94,28 @@ const  Alumnos =() => {
 
   return (
     <>
-      <div className="barrain">
+    <div className="barrain">
       <button className="barrain-boton2">Agregar alumno</button>
     </div>
     <div className="tabla">
         <div className="tablain">
           <div className="columna">
             <p className="tabladato">Alumno</p>
-            <input onChange={onChangeUsuario}></input>
+            <input onChange={onChangeUsuario} className="inputdato"></input>
             <div className="user-cards">
               {users}
-              </div>    
+            </div>    
           </div>
           <div className="columna">
             <p className="tabladato">Curso</p>
-            <input onChange={onChangeCurso}></input>
+            <input onChange={onChangeCurso} className="inputdato"></input>
             <div className="user-cards">
-            {cursos2}
+              {cursos2}
             </div>
           </div>
           <div className="columna">
             <p className="tabladato">Profesor</p>
-            <input onChange={onChangeProfesor}></input>
+            <input onChange={onChangeProfesor} className="inputdato"></input>
             <div className="user-cards">
               {teachers}
             </div>

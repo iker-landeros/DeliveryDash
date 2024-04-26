@@ -52,14 +52,13 @@ const  General =() => {
     id,setEt)
 
   },[id]);
-  console.log(leaders)
   return (
     <div>
         <div className='div-tarjetas'>
-            <TarjetaDashboard id={1} titulo="Jugadores totales" dato={jt.alumnoCount}/>
-            <TarjetaDashboard id={2} titulo="Minutos totales" dato={tt.minutos}/>
-            <TarjetaDashboard id={3} titulo="Estrellas totales" dato={et.estrellasTotales}/>
-            <TarjetaDashboard id={4} titulo="Niveles Completados" dato={nc.NivelesCompletados}/>
+            <TarjetaDashboard id={1} titulo="Jugadores totales" dato={jt?.alumnoCount || 0}/>
+            <TarjetaDashboard id={2} titulo="Minutos totales" dato={tt?.minutos || 0}/>
+            <TarjetaDashboard id={3} titulo="Estrellas totales" dato={et?.estrellasTotales || 0}/>
+            <TarjetaDashboard id={4} titulo="Niveles Completados" dato={nc?.NivelesCompletados || 0}/>
         </div>
         <div className='div-grafica-containers'>
             <div className='div-grafica'>
@@ -71,7 +70,7 @@ const  General =() => {
                     <BarChart
                       width={500}
                       height={300}
-                      data={pn}
+                      data={pn || 0}
                       margin={{
                         top: 5,
                         right: 30,

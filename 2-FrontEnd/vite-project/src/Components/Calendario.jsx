@@ -27,7 +27,11 @@ const  Calendario =() => {
         setDias(data);
         const updatedArray2 = data.map((item,index) => ({
           id: index + 1,
-          date: new Date(new Date(item.fecha).getFullYear(), new Date(item.fecha).getMonth(), new Date(item.fecha).getDate(), 0, 0, 0), // Aquí se establece la hora a las 00:00
+          date: (() => {
+            const fecha = new Date(item.fecha);
+            fecha.setDate(fecha.getDate() + 1); // Sumar 1 día a la fecha
+            return new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), 0, 0, 0); // Establecer la hora a las 00:00
+          })(),
           total: item.usuarios,
         }));
         setUpdatedArray(updatedArray2);

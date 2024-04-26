@@ -98,7 +98,8 @@ const getPromedioTiempoNivelByCourse = (req, res) => {
                 JOIN Inscripciones as i
                 ON a.alumnoID = i.alumnoID
                 WHERE i.cursoID = ?
-                GROUP BY nc.nivelID`
+                GROUP BY nc.nivelID
+                HAVING promedio > 0`
 
     pool.query(sql, [cursoID], (err, results, fields) => {
         if (err) res.json(err)

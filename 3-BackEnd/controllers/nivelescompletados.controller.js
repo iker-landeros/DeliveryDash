@@ -13,20 +13,13 @@ const getNivelesCompletados = (req, res) => {
 const getNivelesCompletadosByAlumno = (req, res) => {
     const { mail } = req.body
     const sql = `SELECT 
-                     A.nickname,
+                     A.mail,
                      NC.nivelID,
-                     NC.obtainedStars
-                 FROM Alumnos A
-                 JOIN NivelesCompletados NC ON A.alumnoID = NC.alumnoID
-                 JOIN (
-                     SELECT nivelID, alumnoID, MAX(obtainedStars) AS maxStars
-                     FROM NivelesCompletados
-                     WHERE alumnoID IN (SELECT alumnoID FROM Alumnos WHERE mail = ?)
-                     GROUP BY nivelID, alumnoID
-                 ) AS MaxStars ON NC.nivelID = MaxStars.nivelID 
-                     AND NC.alumnoID = MaxStars.alumnoID 
-                     AND NC.obtainedStars = MaxStars.maxStars
-                 WHERE A.mail = ?`
+                     MAX(NC.obtainedStars) AS obtainedStars
+                 FROM NivelesCompletados NC
+                 JOIN Alumnos A ON NC.alumnoID = A.alumnoID
+                 WHERE mail = ?
+                 GROUP BY NC.alumnoID, NC.nivelID`
 
     pool.query(sql, [mail, mail], (err, results, fields) => {
         if (err) res.json(err)

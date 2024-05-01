@@ -68,6 +68,7 @@
 }
 .imagen-grande{
   height: 80%;
+  width: 80%;
 }
 .formulario input{
   border-radius: 20px;

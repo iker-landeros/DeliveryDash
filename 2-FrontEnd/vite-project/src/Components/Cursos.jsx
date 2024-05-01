@@ -32,8 +32,9 @@ const  Cursos =() => {
     }
   };
   const handleOnEliminar2 = async (evt) => {
+    const ids = idsSeleccionados.join(',');
+
     evt.preventDefault();
-    const data = { idsSeleccionados };
     const response = await fetch(`${import.meta.env.VITE_SECRET}/cursos/delete`, {
       method: "POST",
       headers: {
@@ -41,7 +42,7 @@ const  Cursos =() => {
         "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
       },
       body: JSON.stringify({
-        cursoID: data.idsSeleccionados[0] 
+        ids:ids
       }),
     });
     const responseData = await response.json();
@@ -49,10 +50,12 @@ const  Cursos =() => {
   };
 
   return (
-    <>
-      <div className="barrain">
-        <button className="barrain-boton2"><AgregarCurso/></button>
-        <button className="barrain-boton2"onClick={handleOnEliminar2}>Eliminar</button>
+    <div className="curso-fondo">
+      <div className="barrain2">
+        <div className="barrain23">
+          <button className="barrain-boton2"><AgregarCurso/></button>
+          <button className="barrain-boton2"onClick={handleOnEliminar2}>Eliminar</button>
+        </div>
       </div>
 
       <div className="tabla2">
@@ -62,20 +65,22 @@ const  Cursos =() => {
             <p className="tabladato2">Fecha Inicio</p>
             <p className="tabladato2">Fecha Final</p>
           </div>
-          {curso.map(usuario =>
-            <div className="tablain2" key={usuario.cursoID}>
-              <input type="checkbox" 
-              className="tabladato2" 
-              key={usuario.cursoID} 
-              id={usuario.cursoID}
-              onChange={handleCheckboxChange}></input>
-              <p className="tabladato2">{usuario.nombre}</p>
-              <p className="tabladato2">{usuario.dateInicio}</p>
-              <p className="tabladato2">{usuario.dateFinal}</p>
-            </div>    
-          )}
+          <div className="tablacompleta">
+            {curso.map(usuario =>
+              <div className="tablain2" key={usuario.cursoID}>
+                <input type="checkbox" 
+                className="tabladato2" 
+                key={usuario.cursoID} 
+                id={usuario.cursoID}
+                onChange={handleCheckboxChange}></input>
+                <p className="tabladato2">{usuario.nombre}</p>
+                <p className="tabladato2">{usuario.dateInicio}</p>
+                <p className="tabladato2">{usuario.dateFinal}</p>
+              </div>    
+            )}
+          </div>
       </div>
-    </>
+    </div>
   )
 }
 

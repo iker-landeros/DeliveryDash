@@ -26,8 +26,8 @@ const  AgregarUsuario = () => {
         const data = await reponse.json()
         if(data.mensaje){
             console.log(data.mensaje)
-            setMyVar(2);
             console.log(myVar)
+            setMyVar(2);
         }
     }
     const [myVar, setMyVar] = useState(1);
@@ -35,11 +35,11 @@ const  AgregarUsuario = () => {
     <>
         {myVar === 1 ? (
         <div>
-            <a href="#openModal" className="modalAgregar" onClick={handleOpenModal}>Agregar Curso</a>
+            <a href="#openModal" className="modalAgregarAC" onClick={handleOpenModal}>Agregar Curso</a>
     
-            <div id="openModal" className="modalDialog">
+            <div id="openModal" className="modalDialogAC">
                 <div>
-                    <a href="#close" title="Close" className="close" onClick={handleCloseModal}>X</a>
+                    <a href="#close" title="Close" className="closeAC" onClick={handleCloseModal}>X</a>
                     <h2>Agregar Curso</h2>
                     <form className="formagregar" onSubmit={handleOnSubmit} ref={agregarForm}>
                         <p>Nombre</p>
@@ -57,11 +57,11 @@ const  AgregarUsuario = () => {
         </div>
         ) : (
         <div>
-            <a href="#openModal2" className="modalAgregar" onClick={handleOpenModal}>Agregar Curso</a>
+            <a href="#openModal3" className="modalAgregarAC" onClick={handleOpenModal}>Agregar Curso</a>
     
-            <div id="openModal2" className="modalDialog">
+            <div id="openModal3" className="modalDialogAC">
                 <div>
-                    <a href="#close" title="Close" className="close" onClick={handleCloseModal}>X</a>
+                    <a href="#close" title="Close" className="closeAC" onClick={handleCloseModal}>X</a>
                     <p>Curso agregado correctamente</p>
                 </div>
             </div>

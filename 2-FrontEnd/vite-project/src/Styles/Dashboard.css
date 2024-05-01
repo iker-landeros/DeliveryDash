@@ -1,7 +1,6 @@
 .fondo-dashboard{
     width: 100%;
     min-height: 100vh;
-    height: auto;
     display: flex;
     flex-wrap: wrap;
 }
@@ -13,15 +12,13 @@
 }
 .container-dashboard{
     width: 100%;
-    height: 100%;
-
     padding: 5%;
     background: linear-gradient(#0053B1, #52BEDA);
 }
 .container-fecha{
     width: 100%;
     height: 4%;
-    margin-top: -20px;
+    margin-top: -49.9px;
     
     flex-wrap: wrap;
     display: flex;
@@ -86,5 +83,10 @@
     }
     .container-fecha{
         margin-top: 0px;
+    }
+}
+@media (max-width: 600px) {
+    .dashboard-titulo{
+        margin-top: 30px;
     }
 }

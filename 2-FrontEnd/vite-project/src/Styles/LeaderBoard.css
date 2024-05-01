@@ -1,0 +1,27 @@
+.div-leaderboard{
+    width: 40%;
+    
+    background-color: white;
+    border-radius: 10px;
+
+    flex-wrap: wrap;
+}
+.leaderboard-centrar{
+    padding: 10px;
+    font-weight: bold;
+}
+.leaderboard-titulo{
+    padding: 10px;
+
+    display: flex;
+    justify-content: space-between;
+}
+.dash-negritas{
+    font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+    .div-leaderboard{
+        width: 100%;
+    }
+}

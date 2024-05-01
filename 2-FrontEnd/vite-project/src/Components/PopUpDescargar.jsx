@@ -8,6 +8,16 @@ const  PopUpDescargar = () => {
 
     const [currentDate] = useState(new Date());
 
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const handleOpenModal = () => {
+        setModalVisible(true);
+    };
+
+    const handleCloseModal = () => {
+        setModalVisible(false);
+    };
+    
     const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
     const [alumnos,setAlumnos] = useState([]);
 
@@ -30,19 +40,16 @@ const  PopUpDescargar = () => {
         }
     }
     useEffect(() => {
-    fetchApi(`${import.meta.env.VITE_SECRET}/alumnos/total/curso/info`,
-    id,setAlumnos,true)
+        fetchApi(`${import.meta.env.VITE_SECRET}/alumnos/total/curso/info`,
+        id,setAlumnos,true)
     },[id]);
     
-    const [modalVisible, setModalVisible] = useState(false);
-
-    const handleOpenModal = () => {
-        setModalVisible(true);
-    };
-
-    const handleCloseModal = () => {
-        setModalVisible(false);
-    };
+    const alumnos2 = [
+        {nombre:"Luis",email:"Luis@com"},
+        {nombre:"Carlos",email:"Carlos@com"},
+        {nombre:"Andres",email:"Andres@com"},
+        {nombre:"Tona",email:"Tona@com"}
+    ]
 
     return (
     <>
@@ -60,7 +67,7 @@ const  PopUpDescargar = () => {
                         <p>Descripción:</p>
                         <p className="texto-modal-sub">Este informe incluye datos sobre los jugadores, los niveles que completaron, el tiempo que les llevó y las estrellas que ganaron.</p>
                         <div className="div-boton-modal">
-                            <CSVLink data={alumnos} filename={"Reporte.csv"}><button className="boton-descargar">Descargar</button></CSVLink>
+                            <CSVLink data={alumnos2} filename={"Reporte.csv"}><button className="boton-descargar">Descargar</button></CSVLink>
                         </div>
                     </div>
                 </div>

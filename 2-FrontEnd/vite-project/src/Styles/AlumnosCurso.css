@@ -1,0 +1,11 @@
+.alumnos-tabla{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+}
+.botones-ac{
+    justify-content: space-between;
+    display: flex;
+    padding: 10px;
+}

@@ -33,6 +33,7 @@ const  Dashboard = () => {
   return (
     <div className='fondo-dashboard'>
       <div className='container-dashboard'>
+
         <div className='container-fecha'>
           <div className='container-fecha-dentro'>
             <select className='boton-fecha' onClick={handleSelectChange}>
@@ -46,10 +47,9 @@ const  Dashboard = () => {
             <button className='boton-descarga' onClick={handleOnSignOut}>cerrar sesión</button>
           </div>
         </div>
+        
         <p className='dashboard-titulo'>Dashboard</p>
-        <div>
-          <MenuBotones/>
-        </div>
+        <MenuBotones/>
       </div>
     </div>
   )

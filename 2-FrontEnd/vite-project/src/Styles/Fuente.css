@@ -4,7 +4,10 @@
     box-sizing: border-box;
     font-family: crossten;
   }
-  
+  html,body{
+    margin: 0;
+    padding: 0;
+  }
   @font-face {
     font-family: crossten;
     src: url('../public/crossten_extralight.ttf');

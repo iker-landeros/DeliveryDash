@@ -12,27 +12,28 @@ const  Calendario =() => {
   const [isFetching, setIsFetching] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (id) => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_SECRET}/nivelescompletados/total/tiempo/dia`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token") || ""}`,
-            },
-          }
-        );
+        const response = await fetch(`${import.meta.env.VITE_SECRET}/nivelescompletados/total/tiempo/dia`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token") || ""}`,
+          },
+          body: JSON.stringify({
+            cursoID: id 
+          }),
+        });
         const data = await response.json();
         setDias(data);
-        const updatedArray2 = data.map((item,index) => ({
+        const updatedArray2 = data.map((item, index) => ({
           id: index + 1,
           date: (() => {
             const fecha = new Date(item.fecha);
             fecha.setDate(fecha.getDate() + 1); // Sumar 1 día a la fecha
             return new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), 0, 0, 0); // Establecer la hora a las 00:00
           })(),
-          total: item.usuarios,
+          total: item.totalAlumnos,
         }));
         setUpdatedArray(updatedArray2);
       } catch (err) {
@@ -41,8 +42,7 @@ const  Calendario =() => {
         setIsFetching(false);
       }
     };
-
-    fetchData();
+    fetchData(id);
   }, [id]);
 
   const [date, setDate] = useState(new Date());

@@ -9,15 +9,19 @@ const  Analitica =() => {
   const [nc,setNc] = useState([]);
   useEffect(() => {
     fetch(`${import.meta.env.VITE_SECRET}/nivelescompletados/horas/mes`, {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
       },
+      body: JSON.stringify({
+        cursoID: 1
+      }),
     })
       .then(data => data.json())
       .then((data) => {
         setNc(data)
+        console.log(data)
       })
   }, [id]);
   return (

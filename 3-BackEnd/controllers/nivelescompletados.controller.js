@@ -50,7 +50,7 @@ const getTotalStars = (req, res) => {
 
 const getHorasTotalPorMes = (req, res) => {
     const { cursoID } = req.body
-    const sql = `SELECT SUM(TIMESTAMPDIFF(MINUTE, NC.dateInicio, NC.dateFinal)) AS minutos,
+    const sql = `SELECT SUM(TIMESTAMPDIFF(SECOND, NC.dateInicio, NC.dateFinal)) AS segundos,
                     MONTHNAME(NC.dateInicio) as mes
                 FROM NivelesCompletados NC
                 INNER JOIN Alumnos A
@@ -111,7 +111,7 @@ const getPromedioTiempoNivelByCourse = (req, res) => {
 
 const getMinutosTotalesByCourse = (req, res) => {
     const { cursoID } = req.body
-    const sql = `SELECT SUM((TIMESTAMPDIFF(MINUTE, dateInicio, dateFinal))) as minutos
+    const sql = `SELECT SUM((TIMESTAMPDIFF(SECOND, dateInicio, dateFinal))) as segundos
                 FROM NivelesCompletados as nc
                 INNER JOIN Alumnos as a
                 ON nc.alumnoID = a.alumnoID

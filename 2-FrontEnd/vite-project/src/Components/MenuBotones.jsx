@@ -2,7 +2,7 @@ import Botones from './Botones';
 import React, { useState } from 'react';
 import Analitica from "../Components/Analitica";
 import General from "../Components/General";
-import Inscripciones from "../Components/Inscripciones";
+import Administracion from "../Components/Administracion";
 
 const  MenuBotones =() => {  
     const [opcion, setOpcion] = useState(0);
@@ -11,7 +11,7 @@ const  MenuBotones =() => {
         <Botones opcion={opcion} setOpcion={setOpcion}/>
             {opcion === 0 && <General/>}
             {opcion === 1 && <Analitica/>}
-            {opcion === 2 && <Inscripciones/>}
+            {opcion === 2 && <Administracion/>}
         </>   
     )
     }

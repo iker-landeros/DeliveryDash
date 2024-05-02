@@ -100,13 +100,14 @@ const getMostStarsAll = (req, res) => {
 const getMostTimeSubscribed = (req, res) => {
     const { cursoID } = req.body
     const sql = `SELECT A.nickname,
-                     SUM(TIMESTAMPDIFF(SECOND, NC.dateInicio, NC.dateFinal)) AS tiempoTotal
-                 FROM Alumnos A
-                 JOIN Inscripciones I ON A.alumnoID = I.alumnoID
-                 JOIN NivelesCompletados NC ON A.alumnoID = NC.alumnoID
-                 WHERE I.cursoID = ?
-                 GROUP BY A.alumnoID, A.nickname
-                 ORDER BY SUM(TIMESTAMPDIFF(SECOND, NC.dateInicio, NC.dateFinal)) DESC`
+                SUM(TIMESTAMPDIFF(SECOND, NC.dateInicio, NC.dateFinal)) AS tiempoTotal
+                FROM Alumnos A
+                JOIN Inscripciones I ON A.alumnoID = I.alumnoID
+                JOIN NivelesCompletados NC ON A.alumnoID = NC.alumnoID
+                WHERE I.cursoID = ?
+                GROUP BY A.alumnoID, A.nickname
+                ORDER BY SUM(TIMESTAMPDIFF(SECOND, NC.dateInicio, NC.dateFinal)) DESC
+                LIMIT 3`
 
     pool.query(sql, [cursoID], (err, results, fields) => {
         if (err) res.json(err)

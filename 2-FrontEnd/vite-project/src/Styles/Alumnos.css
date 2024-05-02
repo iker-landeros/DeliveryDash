@@ -1,8 +1,14 @@
 .tabladato{
     width: 100%;
+    margin-left: 5%;
 }
 .inputdato{
-    width: 95%;   
+    width: 80%;   
+    margin-left: 5%;
+    border-radius: 10px;
+    border: none;
+    padding-left: 10px;
+    background-color: #E7E7E7;
 }
 .tabla{
     width: 100%;
@@ -10,12 +16,14 @@
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    padding: 12px;
     flex-wrap: wrap;
+    background-color: white;
+    min-height: 50vh;
+    border-radius: 10px;
 }
 .tablain{
-    width: 100%;
     height: 90%;
+    width: 97%;
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 10px;
@@ -23,14 +31,16 @@
 .columna{
     flex: 1;
     width: 100%;
-    border: 1px solid black;
-    min-width: 300px;
 }
-.barrain{
+.botonout{
     display: flex;
     width: 100%;
-    padding: 12px;
+    padding: 0;
     justify-content: space-between;
+}
+.botonin{
+    padding: 12px;
+    width: 100%;
 }
 .barrain-boton{
     width: 20%;
@@ -44,10 +54,9 @@
 }
 .user-cards{
     display: block;
-    gap: .25rem;
     margin-top: 1rem;
     height: 200px;
-    overflow-y: auto;
+    overflow-y:auto;
 }
 
 /* CARDS */

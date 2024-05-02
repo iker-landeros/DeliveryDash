@@ -8,6 +8,16 @@ const  PopUpDescargar = () => {
 
     const [currentDate] = useState(new Date());
 
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const handleOpenModal = () => {
+        setModalVisible(true);
+    };
+
+    const handleCloseModal = () => {
+        setModalVisible(false);
+    };
+    
     const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
     const [alumnos,setAlumnos] = useState([]);
 
@@ -30,20 +40,10 @@ const  PopUpDescargar = () => {
         }
     }
     useEffect(() => {
-    fetchApi(`${import.meta.env.VITE_SECRET}/alumnos/total/curso/info`,
-    id,setAlumnos,true)
+        fetchApi(`${import.meta.env.VITE_SECRET}/alumnos/total/curso/info`,
+        id,setAlumnos,true)
     },[id]);
     
-    const [modalVisible, setModalVisible] = useState(false);
-
-    const handleOpenModal = () => {
-        setModalVisible(true);
-    };
-
-    const handleCloseModal = () => {
-        setModalVisible(false);
-    };
-
     return (
     <>
         <div>

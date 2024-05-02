@@ -1,6 +1,5 @@
 .div-grafica-containersa{
     display: flex;
-    margin-top: 20px;
     justify-content: space-between;
     flex-wrap: wrap;
 }

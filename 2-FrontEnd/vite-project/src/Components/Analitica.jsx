@@ -24,6 +24,7 @@ const  Analitica =() => {
     <div>
       <div className='div-grafica-containersa'>
         <div className='div-graficaana'>
+          
           <div className="div-grafica-calor">
             <div className="div-grafica-tituloa">
               <p>Horas totales por mes</p>
@@ -48,7 +49,7 @@ const  Analitica =() => {
                 <div className="linea-gradiante"></div>
                 <div className="leyendalinea">
                   <p>1</p>
-                  <p>100</p>
+                  <p>5</p>
                 </div>
               </div>
             </div>

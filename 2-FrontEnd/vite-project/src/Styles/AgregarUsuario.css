@@ -1,4 +1,4 @@
-.modalDialog {
+.modalDialogAC {
 	position: fixed;
 	font-family: Arial, Helvetica, sans-serif;
 	top: 0;
@@ -10,22 +10,22 @@
 	opacity:0;
 	pointer-events: none;
 }
-.modalAgregar{
+.modalAgregarAC{
 	text-decoration: none;
 }
-.modalDialog:target {
+.modalDialogAC:target {
 	opacity:1;
 	pointer-events: auto;
 }
-.modalDialog > div {
-	width: 400px;
+.modalDialogAC > div {
+	width: 40%;
 	position: relative;
 	margin: 10% auto;
 	padding: 5px 20px 13px 20px;
 	border-radius: 10px;
 	background: #fff;
 }
-.close {
+.closeAC {
 	background: #606061;
 	color: #FFFFFF;
 	line-height: 25px;

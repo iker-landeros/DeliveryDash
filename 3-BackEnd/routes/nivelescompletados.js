@@ -17,12 +17,12 @@ const { getNivelesCompletados,
 
 router.get('/nivelescompletados', getNivelesCompletados)
 router.get('/nivelescompletados/stars', getTotalStars)
-router.get('/nivelescompletados/horas/mes', getHorasTotalPorMes)
 router.get('/nivelescompletados/total', getTotalNivelesCompletados)
 router.get('/nivelescompletados/total/nivel', getPromedioTiempoNivel)
 router.get('/nivelescompletados/total/tiempo', getTiempoTotal)
-router.get('/nivelescompletados/total/tiempo/dia', getUsuarioConectadosDia)
 
+router.post('/nivelescompletados/horas/mes', getHorasTotalPorMes)
+router.post('/nivelescompletados/total/tiempo/dia', getUsuarioConectadosDia)
 router.post('/nivelescompletados/byAlumno', getNivelesCompletadosByAlumno)
 router.post('/nivelescompletados/stars/total/curso', getEstrellasTotalesByCourse)
 router.post('/nivelescompletados/promedio/nivel/curso', getPromedioTiempoNivelByCourse)

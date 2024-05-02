@@ -74,13 +74,13 @@ const  Calendario =() => {
   const getBackgroundColor = (total) => {
     if(total > 0 && total <= 1) {
       return '#81C3EA';
-    } else if (total > 1 && total <= 2) {
+    } else if (total >= 1 && total < 2) {
       return '#5A92B5';
-    } else if (total > 2 && total <= 3) {
+    } else if (total >= 2 && total < 3) {
       return '#337F9E';
-    } else if (total > 3 && total <= 4) {
+    } else if (total >= 3 && total < 4) {
       return '#106D87';
-    } else if (total > 5) {
+    } else if (total >= 4) {
       return '#00546E';
     }
   };
@@ -144,7 +144,6 @@ const  Calendario =() => {
 
   return (
     <div className="calendar">
-      {isFetching && <p>Cargando...</p>}
       {error && <p>Error: {error.message}</p>}
       {renderCalendar()}
     </div>

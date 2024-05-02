@@ -18,6 +18,8 @@
     font-weight: bold;
     flex-wrap: wrap;
     background-color: white;
+    min-height: 50vh;
+    border-radius: 10px;
 }
 .tablain{
     height: 90%;
@@ -52,11 +54,9 @@
 }
 .user-cards{
     display: block;
-    gap: .25rem;
     margin-top: 1rem;
     height: 200px;
-    overflow-y:scroll;
-
+    overflow-y:auto;
 }
 
 /* CARDS */

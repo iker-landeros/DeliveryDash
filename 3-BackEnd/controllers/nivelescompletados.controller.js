@@ -49,11 +49,19 @@ const getTotalStars = (req, res) => {
 }
 
 const getHorasTotalPorMes = (req, res) => {
-    const sql = `SELECT SUM(TIMESTAMPDIFF(MINUTE, dateInicio, dateFinal)) AS minutos,
-                    MONTHNAME(dateInicio) as mes
-                FROM NivelesCompletados`
+    const { cursoID } = req.body
+    const sql = `SELECT SUM(TIMESTAMPDIFF(MINUTE, NC.dateInicio, NC.dateFinal)) AS minutos,
+                    MONTHNAME(NC.dateInicio) as mes
+                FROM NivelesCompletados NC
+                INNER JOIN Alumnos A
+                ON NC.alumnoID = A.alumnoID
+                INNER JOIN Inscripciones I
+                ON A.alumnoID = I.alumnoID
+                INNER JOIN Cursos C
+                ON I.cursoID = C.cursoID
+                WHERE C.cursoID = ?`
 
-    pool.query(sql, (err, results, fields) => {
+    pool.query(sql, [cursoID], (err, results, fields) => {
         if (err) res.json(err)
         res.json(results)
     })
@@ -157,13 +165,20 @@ const getTiempoTotal = (req, res) => {
 }
 
 const getUsuarioConectadosDia = (req, res) => {
-    const sql = `SELECT DATE_FORMAT(dateInicio,'%Y-%m-%d') AS fecha,
-                    COUNT(DISTINCT alumnoID) as usuarios
-                FROM NivelesCompletados
-                WHERE alumnoID>0
-                GROUP BY DAY(dateInicio)`
+    const { cursoID } = req.body
+    const sql = `SELECT DATE_FORMAT(NC.dateFinal,'%Y-%m-%d') AS fecha,
+                COUNT(DISTINCT NC.alumnoID)
+            FROM NivelesCompletados NC
+            INNER JOIN Alumnos A
+            ON NC.alumnoID = A.alumnoID
+            INNER JOIN Inscripciones I
+            ON A.alumnoID = I.alumnoID
+            INNER JOIN Cursos C
+            ON I.cursoID = C.cursoID
+            WHERE C.cursoID = ?
+            GROUP BY fecha`
 
-    pool.query(sql, (err, results, fields) => {
+    pool.query(sql, [cursoID], (err, results, fields) => {
         if (err) res.json(err)
         res.json(results)
     })

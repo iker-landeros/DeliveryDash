@@ -1,7 +1,7 @@
 import "../Styles/AgregarUsuario.css"
 import { useRef,useState } from 'react'
 
-const  AgregarUsuario = () => {
+const  AgregarUsuario = ({handleClickAdd}) => {
     const agregarForm = useRef(null)
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -13,6 +13,11 @@ const  AgregarUsuario = () => {
         setModalVisible(false);
     };
 
+    const handleCloseModal2 = () => {
+        setModalVisible(false);
+        setMyVar(1)
+        handleClickAdd(3)
+    };
     const handleOnSubmit = async (evt) =>{
         evt.preventDefault() 
         const form = new FormData(agregarForm.current)
@@ -28,6 +33,7 @@ const  AgregarUsuario = () => {
             console.log(data.mensaje)
             console.log(myVar)
             setMyVar(2);
+            handleClickAdd(2)
         }
     }
     const [myVar, setMyVar] = useState(1);
@@ -61,7 +67,7 @@ const  AgregarUsuario = () => {
     
             <div id="openModal3" className="modalDialogAC">
                 <div>
-                    <a href="#close" title="Close" className="closeAC" onClick={handleCloseModal}>X</a>
+                    <a href="#close" title="Close" className="closeAC" onClick={handleCloseModal2}>X</a>
                     <p>Curso agregado correctamente</p>
                 </div>
             </div>

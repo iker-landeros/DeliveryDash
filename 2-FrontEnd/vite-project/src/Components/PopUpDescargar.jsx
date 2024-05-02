@@ -44,13 +44,6 @@ const  PopUpDescargar = () => {
         id,setAlumnos,true)
     },[id]);
     
-    const alumnos2 = [
-        {nombre:"Luis",email:"Luis@com"},
-        {nombre:"Carlos",email:"Carlos@com"},
-        {nombre:"Andres",email:"Andres@com"},
-        {nombre:"Tona",email:"Tona@com"}
-    ]
-
     return (
     <>
         <div>
@@ -67,7 +60,7 @@ const  PopUpDescargar = () => {
                         <p>Descripción:</p>
                         <p className="texto-modal-sub">Este informe incluye datos sobre los jugadores, los niveles que completaron, el tiempo que les llevó y las estrellas que ganaron.</p>
                         <div className="div-boton-modal">
-                            <CSVLink data={alumnos2} filename={"Reporte.csv"}><button className="boton-descargar">Descargar</button></CSVLink>
+                            <CSVLink data={alumnos} filename={"Reporte.csv"}><button className="boton-descargar">Descargar</button></CSVLink>
                         </div>
                     </div>
                 </div>

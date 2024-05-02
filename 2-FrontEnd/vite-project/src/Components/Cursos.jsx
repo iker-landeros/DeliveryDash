@@ -4,23 +4,6 @@ import { useState,useEffect } from "react";
 
 const  Cursos =() => {
   const [curso, setCurso] = useState([]);
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_SECRET}/cursos`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
-      },
-    })
-      .then(data => data.json())
-      .then((data) => {
-        setCurso(data)
-      })
-  }, [])
-  const handleOnEliminar = () => {
-    console.log("Elminando",idsSeleccionados)
-  };
-
   const [idsSeleccionados, setIdsSeleccionados] = useState([]);
   
   const handleCheckboxChange = (event) => {
@@ -31,7 +14,8 @@ const  Cursos =() => {
       setIdsSeleccionados(idsSeleccionados.filter(item => item !== id));
     }
   };
-  const handleOnEliminar2 = async (evt) => {
+  const [isDelete,SetIsDelete] = useState(0)
+  const handleOnEliminar = async (evt) => {
     const ids = idsSeleccionados.join(',');
 
     evt.preventDefault();
@@ -47,14 +31,32 @@ const  Cursos =() => {
     });
     const responseData = await response.json();
     if (responseData) console.log(responseData);
+    SetIsDelete(1);
   };
-
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_SECRET}/cursos`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+      },
+    })
+      .then(data => data.json())
+      .then((data) => {
+        setCurso(data)
+      })
+      SetIsDelete(4)
+  }, [isDelete])
+  const AddCurso = (cnt) => {
+    SetIsDelete(cnt)
+    console.log("isdelete",isDelete)
+  }
   return (
     <div className="curso-fondo">
       <div className="barrain2">
         <div className="barrain23">
-          <button className="barrain-boton2"><AgregarCurso/></button>
-          <button className="barrain-boton2"onClick={handleOnEliminar2}>Eliminar</button>
+          <button className="barrain-boton2"><AgregarCurso handleClickAdd={AddCurso}/></button>
+          <button className="barrain-boton2"onClick={handleOnEliminar}>Eliminar</button>
         </div>
       </div>
 

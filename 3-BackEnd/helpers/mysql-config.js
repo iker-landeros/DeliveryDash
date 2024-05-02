@@ -2,7 +2,7 @@ const mysql = require('mysql2')
 require('dotenv').config()
 
 let pool = mysql.createPool({
-    connectionLimit: 10,
+    connectionLimit: 20,
     host: process.env.DBHOST,
     user: process.env.DBUSER,
     password: process.env.DBPASS,

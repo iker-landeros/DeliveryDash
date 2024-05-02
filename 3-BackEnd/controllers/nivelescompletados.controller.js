@@ -167,7 +167,7 @@ const getTiempoTotal = (req, res) => {
 const getUsuarioConectadosDia = (req, res) => {
     const { cursoID } = req.body
     const sql = `SELECT DATE_FORMAT(NC.dateFinal,'%Y-%m-%d') AS fecha,
-                COUNT(DISTINCT NC.alumnoID)
+                COUNT(DISTINCT NC.alumnoID) AS totalAlumnos
             FROM NivelesCompletados NC
             INNER JOIN Alumnos A
             ON NC.alumnoID = A.alumnoID

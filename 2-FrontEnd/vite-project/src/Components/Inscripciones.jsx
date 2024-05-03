@@ -3,6 +3,10 @@ import { useState,useEffect } from "react";
 import Card from "./CardUser"
 import CardCurso from "./CardCurso"
 import CardProf from "./CardProfesor"
+import { Toaster, toast } from 'sonner'
+
+
+
 const  Inscripciones = () => {
   const [alumnos,setAlumnos] = useState([]);
   const [profesores,setProfesores] = useState([]);
@@ -37,8 +41,10 @@ const  Inscripciones = () => {
       })
       const result = await response.json();
       console.log(result)
+      toast.success('Curso Agregado correctamente')
     } catch (err){
       console.log('error', err);
+      toast.error('Error al agregar el curso')
     }
   }
   useEffect(() => {
@@ -114,16 +120,22 @@ const  Inscripciones = () => {
   );
 
   const agregarAlumno = () => {
+    if (profesorIDS === null || userIDS === null || cursoIDS === null){
+      toast.error('Error al agregar el alumno')
+    }
+    else{
     console.log(profesorIDS,userIDS,cursoIDS)
     const data = {alumnoID:userIDS,
             profesorID:profesorIDS,
             cursoID:cursoIDS}
     fetchApiPost(`${import.meta.env.VITE_SECRET}/inscripciones`,data)
+    }
   }
   return (
     <>
     <div className="botonout">
       <div className="botonin">
+        <Toaster richColors />
         <button className="barrain-boton2" onClick={agregarAlumno}>Agregar alumno</button>
       </div>
     </div>

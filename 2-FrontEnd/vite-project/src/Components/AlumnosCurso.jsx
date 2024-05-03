@@ -1,9 +1,13 @@
 import { useState,useEffect } from "react";
 import { useParams  } from 'react-router-dom';
+import { Toaster, toast } from "sonner";
 import "../Styles/AlumnosCurso.css"
 const AlumnosCurso = () => {
     const { id } = useParams()
     const [alumnos,setAlumnos] = useState([]);
+    const [alumnoEliminar,setAlumnoEliminar] = useState(null);
+
+
     const fetchApi = async (url,data,setFunction,isArray) =>{
         try {
           const response = await fetch(url, {
@@ -27,10 +31,15 @@ const AlumnosCurso = () => {
             fetchApi(`${import.meta.env.VITE_SECRET}/alumnos/byCurso`,
             id,setAlumnos,true)
         }, [id])
-    console.log(alumnos)
-    const [alumnoEliminar,setAlumnoEliminar] = useState(0);
+
     const handleOnEliminar = () => {
       console.log(alumnoEliminar)
+      if(alumnoEliminar === null){
+        toast.error('Error al borrar alumno')    
+      }
+      else{
+        toast.success('alumno borrado exitosamente')
+      }
     }
     const alumnoAEliminar = (e) =>{
       setAlumnoEliminar(e)
@@ -39,6 +48,7 @@ const AlumnosCurso = () => {
       <>
       <div className="botonoutac">
         <div className="botoninac">
+          <Toaster richColors/>
           <button className="barrain-boton2" onClick={handleOnEliminar}>Eliminar</button>
         </div>
       </div>

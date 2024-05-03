@@ -49,8 +49,8 @@ const BarChartGraph = () => {
                   }}
               >
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="nivel" />
-                  <YAxis />
+                  <XAxis dataKey="nivel" label={{ value: 'Niveles', position: 'insideBottom' }} />
+                  <YAxis label={{ value: 'Minutos', angle: -90, position: 'insideLeft' }}/>
                   <Tooltip />
                   <Legend />
                   <Bar dataKey="promedio" fill="#0053B1" activeBar={<Rectangle fill="#52BEDA" stroke="#52BEDA" />} />

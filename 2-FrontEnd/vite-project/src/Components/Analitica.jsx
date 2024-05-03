@@ -7,23 +7,28 @@ import { useParams } from "react-router-dom";
 const  Analitica =() => {
   const { id } = useParams();
   const [nc,setNc] = useState([]);
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_SECRET}/nivelescompletados/horas/mes`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
-      },
-      body: JSON.stringify({
-        cursoID: 1
-      }),
-    })
-      .then(data => data.json())
-      .then((data) => {
-        setNc(data)
-        console.log(data)
+  const fetchApi = async (url,data,setFunction,isArray) =>{
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+        },
+        body: JSON.stringify({
+          cursoID: data 
+        }),
       })
-  }, [id]);
+      const result = await response.json();
+      setFunction(isArray ? result : result[0]);
+    } catch (err){
+      console.log('error', err);
+    }
+}
+  useEffect(() => {
+    fetchApi(`${import.meta.env.VITE_SECRET}/nivelescompletados/horas/mes`
+    ,id,setNc,true)}
+, [id]);
   return (
     <div>
       <div className='div-grafica-containersa'>
@@ -38,7 +43,7 @@ const  Analitica =() => {
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Line type="monotone" dataKey="minutos" stroke="#2E77BB" />
+                  <Line type="monotone" dataKey="segundos" stroke="#2E77BB" />
                 </LineChart>
               </ResponsiveContainer>
             </div>

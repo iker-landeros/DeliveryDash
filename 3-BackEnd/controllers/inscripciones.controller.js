@@ -30,5 +30,18 @@ const deleteInscripciones = (req, res) => {
         res.json({ status: 200, mensaje: `Inscripciones ${ids} borrados correctamente` })
     })
 }
+const getUsuariosByCurso = (req, res) => {
+    const { cursoID } = req.body
+    const sql = `SELECT I.id as id,A.nickname as nickname,A.mail as mail
+                FROM Inscripciones I
+                INNER JOIN Alumnos A
+                ON I.alumnoID = A.alumnoID 
+                WHERE cursoID = ?`
 
-module.exports = { getInscripciones, insertInscripcion, deleteInscripciones }
+    pool.query(sql, [cursoID], (err, results, fields) => {
+        if (err) res.json(err)
+        res.json(results)
+    })
+}
+
+module.exports = { getInscripciones, insertInscripcion, deleteInscripciones,getUsuariosByCurso }

@@ -51,7 +51,7 @@ const  General =() => {
     <div>
         <div className='div-tarjetas'>
             <TarjetaDashboard id={1} titulo="Jugadores totales" dato={jt?.alumnoCount || 0}/>
-            <TarjetaDashboard id={2} titulo="Minutos totales" dato={tt?.minutos || 0}/>
+            <TarjetaDashboard id={2} titulo="Segundos totales" dato={tt?.segundos || 0}/>
             <TarjetaDashboard id={3} titulo="Estrellas totales" dato={et?.estrellasTotales || 0}/>
             <TarjetaDashboard id={4} titulo="Niveles Completados" dato={nc?.NivelesCompletados || 0}/>
         </div>

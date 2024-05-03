@@ -39,7 +39,7 @@ const LeaderBoard = () => {
           </div>
           <div className='leaderboard-titulo'>
               <p className="dash-negritas">Username</p>
-              <p  className="dash-negritas">Horas</p>
+              <p  className="dash-negritas">Segundos</p>
           </div>
           {leaders.map(leader => 
                       <TarjetaLeaderBoard key={leader.nickname} usuario={leader.nickname} horas={leader.tiempoTotal}/>

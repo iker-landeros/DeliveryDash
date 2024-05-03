@@ -7,7 +7,7 @@
 
 @font-face {
   font-family: crossten;
-  src: local('crossten'), url('/crossten_extralight.ttf') format('truetype');
+  src: local('crossten'), url('https://main.d3j5ecbcieka8l.amplifyapp.com/public/crossten_extralight.ttf') format('truetype');
 }
 
 @font-face {

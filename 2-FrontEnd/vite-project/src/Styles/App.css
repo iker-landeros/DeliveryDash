@@ -7,12 +7,12 @@
 
 @font-face {
   font-family: crossten;
-  src: local('crossten'), url('https://main.d3j5ecbcieka8l.amplifyapp.com/crossten_extralight.ttf') format('truetype');
+  src: url('/crossten_extralight.ttf'), format('truetype');
 }
 
 @font-face {
   font-family: crossten2;
-  src: local('crossten2'), url('/Crossten-ExtraBold.ttf') format('truetype');
+  src: url('/Crossten-ExtraBold.ttf'), format('truetype');
 }
 
 

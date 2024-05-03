@@ -7,12 +7,12 @@
 
 @font-face {
   font-family: crossten;
-  src: local('crossten'), url('../crossten_extralight.ttf') format('truetype');
+  src: local('crossten'), url('crossten_extralight.ttf') format('truetype');
 }
 
 @font-face {
   font-family: crossten2;
-  src: local('crossten2'), url('../Crossten-ExtraBold.ttf') format('truetype');
+  src: local('crossten2'), url('Crossten-ExtraBold.ttf') format('truetype');
 }
 
 

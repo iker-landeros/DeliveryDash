@@ -2,17 +2,8 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  font-family: crossten;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
-
-@font-face {
-  font-family: crossten;
-  src: url('/crossten_extralight.ttf'), format('truetype');
-}
-
-@font-face {
-  font-family: crossten2;
-  src: url('/Crossten-ExtraBold.ttf'), format('truetype');
-}
-
 

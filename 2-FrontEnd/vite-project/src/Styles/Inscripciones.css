@@ -24,6 +24,7 @@
     font-weight: bold;
     
     cursor: pointer;
+    font-family: crossten;
 }
 @media (max-width: 550px) {
     .espaciob{

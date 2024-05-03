@@ -49,6 +49,7 @@
     text-decoration: none;
     cursor: pointer;
     border: none;
+    font-family: crossten;
 }
 .barrain-boton2:hover{
     background-color: #e0e0e0;

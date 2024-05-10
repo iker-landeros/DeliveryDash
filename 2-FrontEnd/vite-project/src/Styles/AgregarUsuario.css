@@ -9,6 +9,7 @@
 	z-index: 99999;
 	opacity:0;
 	pointer-events: none;
+	font-family: crossten;
 }
 .modalAgregarAC{
 	text-decoration: none;
@@ -54,6 +55,7 @@
     font-weight: bold;
     cursor: pointer;
     margin-top: 10px;
+	font-family: crossten;
 }
 .div-boton-modal{
 	width: 100%;

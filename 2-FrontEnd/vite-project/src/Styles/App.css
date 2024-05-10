@@ -3,16 +3,11 @@
   padding: 0px;
   box-sizing: border-box;
   font-family: crossten;
+  font-weight: 400;
 }
+
 
 @font-face {
   font-family: crossten;
-  src: url('./crossten_extralight.ttf');
+  src: local('crossten'), url('/crossten_extralight.ttf') format('truetype');
 }
-
-@font-face {
-  font-family: crossten2;
-  src: url('./Crossten-ExtraBold.ttf');
-}
-
-

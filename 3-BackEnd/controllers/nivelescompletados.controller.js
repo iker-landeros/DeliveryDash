@@ -146,7 +146,8 @@ const getEstrellasTotalesByCourse = (req, res) => {
 const getTotalNivelesCompletadosByCourse = (req, res) => {
     const { cursoID } = req.body
     const sql = `SELECT COUNT(*) as NivelesCompletados
-                    FROM NivelesCompletados`
+                    FROM NivelesCompletados
+                    WHERE cursoID = ?`
 
     pool.query(sql, [cursoID], (err, results, fields) => {
         if (err) res.json(err)

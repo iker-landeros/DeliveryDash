@@ -9,10 +9,12 @@
 	z-index: 99999;
 	opacity:0;
 	pointer-events: none;
+	font-family: crossten;
 }
 .modalAgregar{
 	text-decoration: none;
     color: #0053B1;
+	
 }
 .modalDialog:target {
 	opacity:1;
@@ -65,4 +67,5 @@
     color: #FFFFFF;
     font-weight: bold;
 	cursor: pointer;
+	font-family: crossten;
 }

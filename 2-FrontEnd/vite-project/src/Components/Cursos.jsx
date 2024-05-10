@@ -30,7 +30,7 @@ const  Cursos =() => {
       }),
     });
     const responseData = await response.json();
-    if (responseData) console.log(responseData);
+    if (responseData)
     SetIsDelete(1);
   };
   useEffect(() => {
@@ -49,7 +49,6 @@ const  Cursos =() => {
   }, [isDelete])
   const AddCurso = (cnt) => {
     SetIsDelete(cnt)
-    console.log("isdelete",isDelete)
   }
   return (
     <div className="curso-fondo">

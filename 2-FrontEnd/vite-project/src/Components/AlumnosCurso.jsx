@@ -9,38 +9,52 @@ const AlumnosCurso = () => {
 
 
     const fetchApi = async (url,data,setFunction,isArray) =>{
-        try {
-          const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
-            },
-            body: JSON.stringify({
-              cursoID: data 
-            }),
-          })
-          const result = await response.json();
-          setFunction(isArray ? result : result[0]);
-        } catch (err){
-          console.log('error', err);
-        }
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+          },
+          body: JSON.stringify({
+            cursoID: data 
+          }),
+        })
+        const result = await response.json();
+        setFunction(isArray ? result : result[0]);
+      } catch (err){
+        console.log('error', err);
       }
+    }
 
-    useEffect(() => {
-            fetchApi(`${import.meta.env.VITE_SECRET}/alumnos/byCurso`,
-            id,setAlumnos,true)
-        }, [id])
-
-    const handleOnEliminar = () => {
-      console.log(alumnoEliminar)
+    const handleOnEliminar = async (evt) => {
       if(alumnoEliminar === null){
         toast.error('Error al borrar alumno')    
       }
       else{
+  
+      evt.preventDefault();
+      const response = await fetch(`${import.meta.env.VITE_SECRET}/inscripciones/delete`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+        },
+        body: JSON.stringify({
+          ids:alumnoEliminar
+        }),
+      });
+      const responseData = await response.json();
+      if (responseData) console.log(responseData)
         toast.success('alumno borrado exitosamente')
       }
-    }
+    };
+
+    useEffect(() => {
+      fetchApi(`${import.meta.env.VITE_SECRET}/inscripciones/curso`,
+      id,setAlumnos,true)
+    }, [id])
+
     const alumnoAEliminar = (e) =>{
       setAlumnoEliminar(e)
     } 
@@ -59,10 +73,10 @@ const AlumnosCurso = () => {
             </div>  
             <div className="tablacompleta">
               {alumnos.map(alumno =>
-                <div key={alumno.alumnoID} className="tarjeta-alumnos">
+                <div key={alumno.id} className="tarjeta-alumnos">
                     <input type="radio" name="curso"
                     className="alumno-radio-button"
-                    onClick={()=>{alumnoAEliminar(alumno.alumnoID)}}>  
+                    onClick={()=>{alumnoAEliminar(alumno.id)}}>  
                     </input>
                     <p  className="alumno-texto">{alumno.nickname}</p>
                     <p className="alumno-texto">{alumno.mail}</p>

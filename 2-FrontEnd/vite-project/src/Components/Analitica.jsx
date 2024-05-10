@@ -36,7 +36,7 @@ const  Analitica =() => {
           
           <div className="div-grafica-calor">
             <div className="div-grafica-tituloa">
-              <p>Horas totales por mes</p>
+              <p>Segundos totales por mes</p>
               <ResponsiveContainer width="100%" height={400}>
                 <LineChart data={nc} margin={{ right: 100}}>
                   <XAxis dataKey="mes" />
